@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap');
+
+
+
+/* Color Variables */
+
+:root {
+  --primary-blue: #7acdfa;
+  --white: #ffffff;
+  --purple: #a44ae5;
+  --pink: #f30dff;
+  --green: #4EC9B0;
+  --yellow: #eaeea2;
+  --orange: #CE9178;
+  --dark-blue: #3175ad;
+  --gray: #e6eaeda5 ;
+  
+}
+
+
+/* GENERAL TAG STYLES */
+
+body::before{
+    display: block;
+    content: '';
+    height: 40px;
+}
+
+body {
+  scroll-behavior: smooth;
+  background: rgb(255, 255, 255);
+  color: #0c0c0c;
+  font-size: 1em;
+  background-attachment: fixed;
+  font-family: 'Mulish', sans-serif;
+}
+
+code{
+  color: var(--purple);
+}
+
+.box{
+  background-color: var(--gray);
+  width: 100%;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
+}
+
+.header{
+  font-weight: bold;
+  color:#080808;
+}
+
+.header ul{
+  padding: 0; 
+  list-style-type: none;
+}
+
+.primary-blue{
+  color: var(--primary-blue)
+}
+
+.green{
+  color: var(--green);
+}
+
+/* Removes button outline */
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#log-in {
+  width: 20%;
+  height: 160px;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  z-index: 1;
+  padding: 1em;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 0.25rem;
+  background: rgb(255, 255, 255);
+  box-shadow: 1px 1px 3px 0.1px #858484;
+}
+
+.blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.hidden {
+  display: none;
+}
+
+  /** ---------------------- LINK STYLING ---------------------- **/
+
+  a { 
+    text-decoration: none;
+    color: var(--dark-blue);
+  }
+
+  a:hover {
+    text-shadow: 0px 0px 0px #080808;
+    text-decoration: none;
+  }
+  
+  .link-page a {
+    -webkit-text-fill-color: #0a0a0a;
+    font-weight: 500;
+  }
+
+  .link-page a:hover {
+    -webkit-text-fill-color: var(--primary-blue);
+  }
+  
+  /* go to the past BUTTON STYLING */
+
+  .past-btn{
+  background: var(--gray);
+  box-shadow: var(--gray) 0 10px 20px -15px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 11px 22px;
+  border: 0;
+}
+  
+/* On the Horizon Box */
+
+.horizon-box{
+  background-color: var(--purple);
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  color: black;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
+}
+
+.horizon-box .header{
+  color: white;
+}
+
+.horizon-item{
+  margin: 10px;
+  text-align: center;
+  list-style: none;
+
+}
+
+.horizon-item a{
+  -webkit-text-fill-color: white;
+}
+
+.horizon-item a:hover{
+  -webkit-text-fill-color: black;
+}
+
+/* Past Lectures Button */
+
+.past-btn{
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
+}
+.past-btn:hover {
+  box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, 0.24);
+ 
+}
+
+.past-link a:hover{
+  -webkit-text-fill-color: black;
+}
+
+.past-text{
+  font-size: 1.1em;
+}
+
+.down-arrow{
+  font-size: 0.8em;
+}
+
+/* SCHEDULE CUSTOM STYLING */
+
+.plan {
+  margin-bottom: 0.5em;
+}
+
+.plan ul {
+  margin-bottom: 0;
+  margin-left: 3.5em;
+}
+
+.date {
+  font-weight: bold;
+}
+
+.kind {
+  width: 3.5em;
+  display: inline-block;
+  color: #888;
+}
+
+.horizon-item{
+  margin: 10px;
+  text-align: center;
+  list-style: none;
+
+}
+
+
+/* TEAM PROFILES */
+
+.profile{
+  height: 210px;
+  width: 210px;
+  margin: 10px;
+}
+
+.profile-image{
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.profile-image:hover{
+  box-shadow: 0 0 10px var(--primary-blue);
+}
+
+#profile-page img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+#profile-page figcaption {
+  display: none;
+}
+
+/* Team Site Login  */
+
+#log-in {
+  width: 20%;
+  height: 160px;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  z-index: 1;
+  padding: 1em;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 0.25rem;
+  background: rgb(255, 255, 255);
+  box-shadow: 1px 1px 3px 0.1px #858484;
+}
+
+.blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.hidden {
+  display: none;
+}
+
+/* EXERCISE PAGE */
+
+.btn-ov{
+  font-weight: 700;
+}
+
+.overview-item ul{
+  margin: 0;
+  padding: 0;
+}
+
+.overview-item ul li{
+  list-style: square;
+}
+
+.toc {
+  font-size: 0.9rem;
+}
+.toc > ul {
+  margin-top: 0rem;
+}
+.toc ul {
+  padding-inline-start: 1em;
+}
+
+#menu-overview {
+  position: sticky;
+  top: 4em;
+  max-height: 74vh;
+  overflow-y: scroll;
+}
+
+/* FOOTER */
+
+.footer-text{
+  font-size: 12px;
+}
+
+/* TEAM Career Site */
+
+.career-nav{
+  font-size: larger;
+  font-weight: 500;
+  margin-right: 30px;
+}
+
+
+
+   
+/** ---------------------- PANDOC GENERATED SYNTAX HIGHLIGHTING ---------------------- **/
+
+/** Autogenerated by `pandoc -s -o test.html index.md` **/
+a.sourceLine {
+  display: inline-block;
+  line-height: 1.25;
+}
+a.sourceLine {
+  pointer-events: none;
+  color: inherit;
+  text-decoration: none;
+}
+a.sourceLine:empty {
+  height: 1.2em;
+}
+.sourceCode {
+  overflow: visible;
+}
+
+code.sourceCode {
+  white-space: pre;
+  position: relative;
+}
+div.sourceCode {
+  margin: 1em 0;
+}
+pre.sourceCode {
+  margin: 0;
+}
+@media screen {
+  div.sourceCode {
+    overflow: auto;
+    padding: 1.5em 0;
+  }
+}
+@media print {
+  code.sourceCode {
+    white-space: pre-wrap;
+  }
+  a.sourceLine {
+    text-indent: -1em;
+    padding-left: 1em;
+  }
+}
+pre.numberSource a.sourceLine {
+  position: relative;
+  left: -4em;
+}
+pre.numberSource a.sourceLine::before {
+  content: attr(title);
+  position: relative;
+  left: -1em;
+  text-align: right;
+  vertical-align: baseline;
+  border: none;
+  pointer-events: all;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 0 4px;
+  width: 4em;
+  color: #aaaaaa;
+}
+pre.numberSource {
+  margin-left: 3em;
+  border-left: 1px solid #aaaaaa;
+  padding-left: 4px;
+}
+
+@media screen {
+  a.sourceLine::before {
+    text-decoration: none;
+  }
+}
+
+table td,
+table th {
+  padding: 0.5em;
+}
+
+blockquote {
+  margin-left: 1em;
+  background: rgba(252, 252, 252, 0.3);
+  padding: 1em 1em 1em 1em;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+pre.plaintext {
+  padding: 1em;
+  padding-left: 2em;
+}
+
+div.sourceCode,
+pre:not(.sourceCode) {
+  background: rgba(0, 0, 0, 0.664);
+}
+div.sourceCode code {
+  background: rgba(88, 88, 88, 0);
+  margin-left: 0em;
+}
+.sourceCode a.sourceLine {
+  margin-left: 3em;
+}
+pre code {
+  -webkit-text-fill-color: rgb(228, 228, 228);
+}
+code span.kw {
+  -webkit-text-fill-color: #ce93d8;
+  font-weight: normal;
+  font-style: normal;
+} /* Keyword */
+code span.dt {
+  -webkit-text-fill-color: #14a98b;
+  font-weight: normal;
+  font-style: normal;
+} /* DataType */
+code span.dv {
+  -webkit-text-fill-color: #75e4f8;
+  font-weight: normal;
+  font-style: normal;
+} /* DecVal */
+code span.bn {
+  -webkit-text-fill-color: #79abff;
+  font-weight: normal;
+  font-style: normal;
+} /* BaseN */
+code span.fl {
+  -webkit-text-fill-color: #b6d1ff;
+  font-weight: normal;
+  font-style: normal;
+} /* Float */
+code span.ch {
+  -webkit-text-fill-color: #fec47e;
+  font-weight: normal;
+  font-style: normal;
+} /* Char */
+code span.st {
+  -webkit-text-fill-color: #59e0b9;
+  font-weight: normal;
+  font-style: normal;
+} /* String */
+code span.co {
+  -webkit-text-fill-color: #cfcecd;
+  font-weight: normal;
+  font-style: italic;
+} /* Comment */
+code span.ot {
+  -webkit-text-fill-color: #f5939d;
+  font-weight: normal;
+  font-style: normal;
+} /* Other */
+code span.al {
+  -webkit-text-fill-color: #db5351;
+  font-weight: normal;
+  font-style: normal;
+} /* Alert */
+code span.fu {
+  -webkit-text-fill-color: #a756b5;
+  font-weight: normal;
+  font-style: normal;
+} /* Function */
+code span.er {
+  -webkit-text-fill-color: #db5351;
+  font-weight: normal;
+  font-style: normal;
+} /* Error */
+code span.wa {
+  -webkit-text-fill-color: #f06023;
+  font-weight: normal;
+  font-style: italic;
+} /* Warning */
+code span.cn {
+  -webkit-text-fill-color: #6da2ff;
+  font-weight: normal;
+  font-style: normal;
+} /* Constant */
+code span.sc {
+  -webkit-text-fill-color: #80f6a7;
+  font-weight: normal;
+  font-style: normal;
+} /* SpecialChar */
+code span.vs {
+  -webkit-text-fill-color: #8af7ff;
+  font-weight: normal;
+  font-style: normal;
+} /* VerbatimString */
+code span.ss {
+  -webkit-text-fill-color: #8af7ff;
+  font-weight: normal;
+  font-style: normal;
+} /* SpecialString */
+code span.im {
+  -webkit-text-fill-color: #ce93d8;
+  font-weight: normal;
+  font-style: normal;
+} /* Import */
+code span.va {
+  -webkit-text-fill-color: #80f6a7;
+  font-weight: normal;
+  font-style: normal;
+} /* Variable */
+code span.cf {
+  -webkit-text-fill-color: #ce93d8;
+  font-weight: normal;
+  font-style: normal;
+} /* ControlFlow */
+code span.op {
+  -webkit-text-fill-color: #ce93d8;
+  font-weight: normal;
+  font-style: normal;
+} /* Operator */
+code span.bu {
+  -webkit-text-fill-color: #e5a3ff;
+  font-weight: normal;
+  font-style: normal;
+} /* BuiltIn */
+code span.ex {
+  -webkit-text-fill-color: #fff;
+  font-weight: normal;
+  font-style: normal;
+} /* Extension */
+code span.pp {
+  -webkit-text-fill-color: #f06023;
+  font-weight: normal;
+  font-style: normal;
+} /* Preprocessor */
+code span.at {
+  -webkit-text-fill-color: #fff;
+  font-weight: normal;
+  font-style: normal;
+} /* Attribute */
+code span.do {
+  -webkit-text-fill-color: #cfcecd;
+  font-weight: normal;
+  font-style: italic;
+} /* Documentation */
+code span.an {
+  -webkit-text-fill-color: #cfcecd;
+  font-weight: normal;
+  font-style: italic;
+} /* Annotation */
+code span.cv {
+  -webkit-text-fill-color: #cfcecd;
+  font-weight: normal;
+  font-style: italic;
+} /* CommentVar */
+code span.in {
+  -webkit-text-fill-color: #cfcecd;
+  font-weight: normal;
+  font-style: italic;
+} /* Information */

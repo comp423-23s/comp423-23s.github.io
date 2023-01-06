@@ -1,0 +1,29 @@
+{%if fixed_navbar%}
+    {% extends "./templates/base-fixed-navbar.jinja2" %}
+{%elif (site_branch == "team")%}
+    {% extends "./templates/team.jinja2" %}
+{%elif (site_branch == "public")%}
+    {% extends "./templates/public.jinja2" %}
+{%else%}
+    {% extends "./templates/base.jinja2" %}
+{%endif%}
+{% block content %}
+    <script src="/static/scripts/toggle-handler.js"></script>
+    
+    <div class="row px-4">
+        <div id="box" class="toc col-xl-3 col-lg-3 order-1 order-lg-2" role="doc-toc">
+            <div id="menu-overview" class="link-page box">
+                <button id="overview-button" class="btn btn-ov" onclick="hideshow()">Overview  <img id="button-img" class="filter-icon" src="/static/components/Itinerary/arrow-up.svg" style="height:15px; padding-left: 4px;"></button>
+                <div id="overview-links">
+                    <div id="TOC" role="doc-toc">
+                        <ul class="overview-item">{{overview}}</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="content col-xl-9 col-lg-9 order-2 order-lg-1 pt-3">{{body}}</div>
+
+       
+
+    </div> 
+{% endblock %}

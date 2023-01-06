@@ -1,0 +1,12 @@
+{%if fixed_navbar%}
+    {% extends "./templates/base-fixed-navbar.jinja2" %}
+{%elif (site_branch == "team")%}
+    {% extends "./templates/team.jinja2" %}
+{%else%}
+    {% extends "./templates/base.jinja2" %}
+{%endif%}
+{% block content %}
+    <div class="container">
+                <div class="content">{{body}}</div>
+            </div>
+{% endblock %}

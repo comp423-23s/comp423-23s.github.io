@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll="0" data-nav1="true">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {{title}} - COMP423 - 23S</title>
+    <link rel="icon" type="image/png" href="/static/tabbrand.png" />
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css?v={{time_stamp}}">
+    <script src="/static/scripts/sunset_sunrise.js"></script>
+</head>
+
+<body id="body" class="absolute-page">
+    <script>
+        const lat = 35.912005; // latitude and longitude for Chapel Hill
+        const long = -79.051210; // Replace with some way to gain User location if/when desired
+    </script>
+    <script>
+        // resets user pref in the event of styling overhaul
+        if ((localStorage.getItem('mode') == "halloween-mode") || (localStorage.getItem('userPref') == "halloween-mode")) {
+            localStorage.setItem('userPref', null);
+            localStorage.setItem('mode', null);
+        }
+    
+        var datetime = new Date(); // NOTE: This is my additional scripting to check whereabouts the sun is
+        var time = datetime.getHours() + (datetime.getMinutes() / 60);
+        var timer = 240000000; // a very big number
+        if(localStorage.getItem('userPref') === null) {
+            if(time < getSunrise(lat, long)) {
+                localStorage.setItem('mode', 'dark-mode');
+                var timer = getSunrise(lat, long) - time;
+            } else if(time > getSunset(lat, long)) {
+                localStorage.setItem('mode', 'dark-mode');
+                var timer = (getSunrise(lat, long) + 24) - time;
+            } else {
+                localStorage.setItem('mode', 'light-mode');
+                var timer = getSunset(lat, long) - time;
+            }
+        }
+    </script>
+    <script>
+        document.body.classList.remove('light-mode');
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add(localStorage.getItem('userPref')); // userPref holds which mode the user prefers
+        document.body.classList.add(localStorage.getItem('mode')); // mode holds the current state of the site
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div onKeyPress="return popFunction(event)">
+        <form id="popup" class="center-text" id="form01" action="demo_form.asp" onsubmit="return false;" >
+            <h3 id="popuptext" style="margin-bottom: 20px; margin-top: 15px;">Register for HACK110!</h3>
+            <p>
+            Hack110 is an optional event where you learn how to take on projects beyond the scope of COMP110.
+            </p>
+            <div class="pcontainer">
+                <div class="popup-center">
+                <a href="https://bit.ly/Hack11021f" target="_blank">
+                <button class="popup-btn" onclick="popFunction(0)">
+                    <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                    </svg>
+                    <a href="https://bit.ly/Hack11021f" target="_blank">RSVP</a>
+                </button>
+                </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <a name="top"></a>
+    <div id="page-container">
+    <div id="content-wrapper">
+    <script src="/static/scripts/popup-element.js"></script>
+    <div class="wrapper">
+        <nav id="navbarStick" class="navbar navbar-expand">
+            <div class="container-fluid d-flex">
+                <div class = 'hide-during-scroll'>
+                    <div class="container nav-const">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                        <a class="navbar-brand web" href="/"><img class="lightmode-element-only img-fluid logo" src="/static/lightbrand.png"
+                        alt="COMP110 - Spring - 2021"><img class="darkmode-element-only img-fluid logo" src="/static/darkbrand.png"
+                        alt="COMP110 - Spring - 2021"></a>
+                        <ul class="navbar-nav web menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/resources">resources</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/lessons-page">lessons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/topics">topics</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/support">support</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/explore">explore</a>
+                            </li>
+                        </ul>
+                            <a href="javascript:void(0);" class="icon" id="hamburger">
+                                <i class="fa fa-bars fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id='mode-switch' class="ms-auto form-check form-switch mode">
+                    <div class="switches">
+                        <input type="checkbox" id="1" onclick="
+                            if (localStorage.getItem('mode') === 'dark-mode') {
+                                localStorage.setItem('userPref', 'light-mode');
+                                localStorage.setItem('mode', 'light-mode');
+                            } else {
+                                localStorage.setItem('userPref', 'dark-mode');
+                                localStorage.setItem('mode', 'dark-mode');
+                            }
+                            location.reload();">
+                        <label for="1">
+                            <span id="mode-label">Dark Mode</span>
+                            <span></span>
+                        </label>
+                        <script>if(localStorage.getItem('mode') === 'dark-mode'){document.getElementById("1").checked = true}</script>
+                        <script>if(localStorage.getItem('userPref') === null) {setTimeout(function(){location.reload();}, (timer * 3600000));}</script>
+                    </div>
+                </div>
+            </div>
+             <a class="navbar-brand mobile" href="/"><img class="lightmode-element-only img-fluid logo" src="/static/lightbrand.png"
+                alt="COMP110 - Spring - 2021"><img class="darkmode-element-only img-fluid logo" src="/static/darkbrand.png"
+                alt="COMP110 - Spring - 2021"></a>
+        </nav>
+        <ul class="navbar-nav mobile menu-dropdown fixed-nav-dropdown" id="mobile">
+            <li class="nav-item" id="link1">
+                <a class="nav-link" href="/">home</a>
+            </li>
+            <li class="nav-item" id="link2">
+                <a class="nav-link" href="/resources">resources</a>
+            </li>
+            <li class="nav-item" id="link3">
+                <a class="nav-link" href="/lessons-page">lessons</a>
+            </li>
+            <li class="nav-item" id="link4">
+                <a class="nav-link" href="/topics">topics</a>
+            </li>
+            <li class="nav-item" id="link5">
+                <a class="nav-link" href="/support">support</a>
+            </li>
+             <li class="nav-item" id="last-link">
+                <a class="nav-link" href="/explore">explore</a>
+            </li>
+        </ul>
+
+        <script>
+            document.getElementById("hamburger").addEventListener("click", function() {
+            var x = [];
+            x[0] = document.getElementById("link1");
+            x[1] = document.getElementById("link2");
+            x[2] = document.getElementById("link3");
+            x[3] = document.getElementById("link4");
+            x[4] = document.getElementById("link5");
+            x[5] = document.getElementById("last-link");
+            for (let i = 0; i < 6; i++) {
+                if (x[i].style.display === "block") {
+                    x[i].style.display = "none";
+                    document.getElementById("mobile").style.paddingTop="0";
+                    document.getElementById("mobile").style.paddingBottom="0";
+                    document.getElementById("mobile").style.transition="all 0.5s ease-in-out";
+                    
+                } else {
+                    x[i].style.display = "block";
+                    {# document.getElementById("mobile").style.paddingTop="20px";
+                    document.getElementById("mobile").style.paddingBottom="20px";
+                     #}
+                }
+            }
+            });
+        </script>
+
+        <div id="{{page}}-page" class="container home-container">
+            <div class="row pt-4">
+                <div class="col-12">
+                    <h1 class="display-5">{{title}}</h1>
+                    <hr class="title"/>
+                </div>
+            </div>
+            {% block content %}{% endblock %}
+            
+            <div class='link-page wrapper'>
+            <footer>
+                    <p class="footer-content">&copy; 2022 <a href="https://krisjordan.com">Kris Jordan</a>
+                        - <a
+                            href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform?usp=sf_link">Feedback
+                            Form</a> - Made with 💛 in <a href="https://cs.unc.edu/">Chapel Hill</a></p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"
+        integrity="sha256-5oApc/wMda1ntIEK4qoWJ4YItnV4fBHMwywunj8gPqc=" crossorigin="anonymous"></script>
+    <script src="/static/script.js"></script>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- Load our React components. -->
+
+    <script type="text/babel" src="/static/components//Itinerary/EventSection.tsx?cache={{time_stamp}}"></script>
+    <script type="text/babel" src="/static/components//Itinerary/DateSection.tsx?cache={{time_stamp}}"></script>
+    <script type="text/babel" src="/static/components//Itinerary/Dates.tsx?cache={{time_stamp}}"></script>
+        <script type="text/babel" src="/static/components//Itinerary/DropdownButton.tsx?cache={{time_stamp}}"></script>
+    <script type="text/babel" src="/static/components//Itinerary/Dropdown.tsx?cache={{time_stamp}}"></script>
+    <script type="text/babel" src="/static/components//Itinerary/Search.tsx?cache={{time_stamp}}"></script>
+    <script type="text/babel" src="/static/components//Itinerary/PillButtons.tsx?cache={{time_stamp}}"></script>
+    <script type="text/babel" src="/static/components//Itinerary/PillButton.tsx?cache={{time_stamp}}"></script>
+    <script type="text/babel" src="/static/components//Itinerary/Itinerary.jsx?cache={{time_stamp}}"></script>
+    <script src="/static/scripts/popup-handler.js"></script>
+
+
+</body>
+
+</html>

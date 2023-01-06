@@ -1,0 +1,20 @@
+{%if fixed_navbar%}
+    {% extends "./templates/base-fixed-navbar.jinja2" %}
+{%elif (site_branch == "team")%}
+    {% extends "./templates/team.jinja2" %}
+{%elif (site_branch == "public")%}
+    {% extends "./templates/public.jinja2" %}
+{%else%}
+    {% extends "./templates/base.jinja2" %}
+{%endif%}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {%- for column in body -%}
+            <div class="col">
+                <div class="content">{{column}}</div>
+            </div>
+            {%- endfor -%}
+        </div>
+    </div>
+{% endblock %}
