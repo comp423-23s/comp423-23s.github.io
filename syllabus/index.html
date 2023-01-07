@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Syllabus - COMP423 - 23S</title>
+  <link rel="icon" type="image/png" href="/static/tabbrand.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/static/styles.css?v=1673120271.4601989">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+    <div class="container">
+      <a href="/" class="navbar-brand">COMP423</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="/">agenda</a>
+          </li>
+          <li class="nav-item">
+            <a href="/support" class="nav-link">support</a>
+          </li>
+          <li class="nav-item">
+            <a href="/team" class="nav-link">team423</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="logistics-page" class="container">
+    <div class="row pt-4">
+      <div class="col-12">
+        <h2>Syllabus</h2>
+        <hr class="title" />
+      </div>
+    </div>
+
+    <script src="/static/scripts/toggle-handler.js"></script>
+    
+    <div class="row px-4">
+        <div id="box" class="toc col-xl-3 col-lg-3 order-1 order-lg-2" role="doc-toc">
+            <div id="menu-overview" class="link-page box">
+                <button id="overview-button" class="btn btn-ov" onclick="hideshow()">Overview  <img id="button-img" class="filter-icon" src="/static/components/Itinerary/arrow-up.svg" style="height:15px; padding-left: 4px;"></button>
+                <div id="overview-links">
+                    <div id="TOC" role="doc-toc">
+                        <ul class="overview-item"><ul>
+<li><a href="#general-course-info">General Course Info</a></li>
+<li><a href="#course-description-target-audience-and-prerequisites">Course Description, Target Audience, and Prerequisites</a></li>
+<li><a href="#goals">Goals</a></li>
+<li><a href="#textbooks-and-resources">Textbooks and Resources</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#modality-in-person">Modality: In-person</a></li>
+<li><a href="#course-requirements-and-policies">Course Requirements and Policies</a></li>
+<li><a href="#course-load-expectation">Course Load Expectation</a></li>
+<li><a href="#grading-criteria">Grading Criteria</a></li>
+<li><a href="#class-attendance-policy">Class Attendance Policy</a>
+<ul>
+<li><a href="#regrade-requests">Regrade Requests</a></li>
+<li><a href="#late-policies">Late policies</a></li>
+</ul></li>
+<li><a href="#honor-code-and-collaboration-policy">Honor Code and Collaboration Policy</a>
+<ul>
+<li><a href="#code-review-test">Code Review Test</a></li>
+</ul></li>
+<li><a href="#grading-scale-breakdown">Grading Scale Breakdown</a></li>
+<li><a href="#course-schedule">Course Schedule</a></li>
+<li><a href="#feedback">Feedback</a></li>
+<li><a href="#diversity-statement">Diversity Statement</a></li>
+<li><a href="#title-ix-resources">Title IX Resources</a></li>
+<li><a href="#counseling-and-psychological-services">Counseling and Psychological Services</a></li>
+</ul>
+</</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="content col-xl-9 col-lg-9 order-2 order-lg-1 pt-3"><h2 id="general-course-info">General Course Info</h2>
+<p>Title: Foundations of Software Engineering</p>
+<p>Term: Spring 2023</p>
+<p>Department: Computer Science (COMP)</p>
+<p>Course Number: 590 (Pilot for 423)</p>
+<p>Section: In-person MWF - 1:25pm to 2:15pm</p>
+<p>Instructor: <a href="https://www.youtube.com/krisjordan">Kris Jordan</a></p>
+<ul>
+<li>E-mail: <a href="mailto:kris+comp590.23s@cs.unc.edu" class="email">kris+comp590.23s@cs.unc.edu</a></li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/krisjordan/" class="uri">https://www.linkedin.com/in/krisjordan/</a></li>
+<li>Twitter: <a href="https://twitter.com/krisjordan" class="uri">https://twitter.com/krisjordan</a></li>
+</ul>
+<p>Undergraduate Teaching Assistants:</p>
+<ul>
+<li>Andrew Zheng</li>
+<li>Bailey DeSouza</li>
+<li>Charles Ma</li>
+<li>Claire Helms</li>
+<li>David Karash</li>
+<li>Felipe Yanaga</li>
+<li>Fernando Garcia</li>
+<li>Iris Chien</li>
+<li>Matthew Kolsch</li>
+<li>Meghan Sun</li>
+<li>Naomi Smith</li>
+<li>Sadie Amato</li>
+<li>Sam Shi</li>
+</ul>
+<h2 id="course-description-target-audience-and-prerequisites">Course Description, Target Audience, and Prerequisites</h2>
+<p>This course introduces students to the fundamentals of Software Engineering. With an emphasis on today’s best practices and tools, students gain experience with technical communication, team collaboration, design process, project management methodologies, development and production environment concerns, automation, code review, and so on.</p>
+<p>The target audience for this course are Undergraduate Computer Science majors seeking exposure and experience to the discipline of software engineering.</p>
+<p>Pre-requisite Courses: C or better in both COMP301 and COMP211.</p>
+<h2 id="goals">Goals</h2>
+<p>The goal of this course is to prepare you for technical leadership with an emphasis on collaboratively designing, implementing, and shipping human-centered software systems.</p>
+<ol type="1">
+<li>Habitualize lifelong learning in the field through experimentation, reading, self-reflection, and participation in professional communities.</li>
+<li>Improve spoken and written technical communications to specific audiences of stakeholders.</li>
+<li>Practice designing, producing, iterating on, and operating production-grade software systems in small teams.</li>
+</ol>
+<h2 id="textbooks-and-resources">Textbooks and Resources</h2>
+<p>The course web page (https://comp423-23s.github.io/) and Canvas are the primary resources for this course. There is no textbook for this course. We will distribute frequent readings, reference material, and tutorials via the course website and Canvas.</p>
+<p>Textbooks we will source chapters from, without your needing to purchase any texts, include the following. Each of these books is worth reading in whole and having on your bookshelf as you progress in your software engineering career!</p>
+<ul>
+<li>The Mythical Man-month, Fred Brooks</li>
+<li>Code Complete 2nd Edition, Steve McConnell</li>
+<li>The Pragmatic Programmer, Dave Thomas and Andrew Hunt</li>
+<li>Clean Code and Clean Agile, Robert Martin</li>
+<li>A Philosophy of Software Design, John Ousterhout</li>
+<li>Understanding Comics, Scott McCloud</li>
+<li>Conceptual Blockbusting, James L Adams</li>
+</ul>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>This is a pilot course being taught for the very first semester. The instructor reserves to right to make changes to the syllabus. Any changes will be announced as early as possible. Given the experimental nature of this course, please anticipate changes in the syllabus being far more likely than with established courses of record. Check the course site regularly for updates and announcements!</p>
+<h2 id="modality-in-person">Modality: In-person</h2>
+<p>The most valuable resources in this course are lecture and office hours. Both will be held exclusively in-person; remote participation in lecture is not feasible due to the emphasis on groupwork. Unlike most of the computer science courses in our curriculum, Software Engineering is more about interpersonal communication and the habits of practices than programming and the mastery of neatly defined concepts and skills. You will be working in pairs and teams throughout the semester.</p>
+<h2 id="course-requirements-and-policies">Course Requirements and Policies</h2>
+<p>You should attend all lectures and check the course page for announcements and updates. You should complete all assignments on time. Please show up at least five minutes early to lecture so class can begin promptly at its scheduled start time.</p>
+<h2 id="course-load-expectation">Course Load Expectation</h2>
+<p>This course is a rigorous introduction to Software Engineering. Communicating with your team mates, reading, designing, self-teaching, and debugging will require significant amounts of time every week. The amount of time you and your team mates spend engaging with course content and projects outside of lecture will significantly impact what you get out of this course. You should expect to spend 2.5 hours per week on lecture in addition to 8 hours per week <em>outside of lecture</em> working on the course. We DO NOT recommended taking COMP423 in a semester when you are enrolled in 17 or more credit hours.</p>
+<h2 id="grading-criteria">Grading Criteria</h2>
+<p>To do well in this course you must actively participate in lecture, be a professional, responsible, and productive team mate, keep up with the reading, writing, and programming assignments, and produce quality software. Final grades are calculated with the following weights for each course component:</p>
+<ul>
+<li>50% - Groupwork / Project Milestones / Final Project</li>
+<li>30% - Homework (Reading, Writing, Small Exercises)</li>
+<li>20% - Classroom Participation
+<ul>
+<li>10% - In-class Activities and Participation</li>
+<li>10% - Quizzes</li>
+</ul></li>
+</ul>
+<h2 id="class-attendance-policy">Class Attendance Policy</h2>
+<p>Our course adheres to UNC’s official policies on <a href="https://catalog.unc.edu/policies-procedures/attendance-grading-examination/">Attendance, Grading, and Examination</a>.</p>
+<p>Each student is permitted to be absent for up to four (4) lecture meetings without any penalty, prior approval, or instructor notification, regardless of absence type (university approved or otherwise). After four missed lectures, absences will count against your in-class activities and participation grade unless they are university approved absences.</p>
+<h3 id="regrade-requests">Regrade Requests</h3>
+<p>Regrade requests for quizzes and other manually graded assignments are open for 48 hours following the release of the grade. If you missed any of the points on a given assignment, review your work when grades are posted and understand the marks you missed. This will raise your comprehension and mastery of the material. In the event we grade your work improperly, select the specific question on Gradescope and submit a regrade request. If there are multiple questions, submit one request per question. Do not use regrade requests to ask why something is wrong, come work with us in office hours to understand the problem at hand.</p>
+<h3 id="late-policies">Late policies</h3>
+<p>All lecture assignments will be due by the end of lecture and handed-in to course staff.</p>
+<p>All assignments, outside of assessments such as quizzes and the final exam, will have an 11:59pm deadline on their due date.</p>
+<p>Assignments with 11:59pm deadlines will have late periods. When the late period begins, there is a 1-hour grace period in which no penalty is applied. A 15% late penalty will be applied at the end of the semester. The late period for assignments is 48-hours. To ensure fairness to everyone, as emergencies may arise, we will drop the four lowest homework scores.</p>
+<h2 id="honor-code-and-collaboration-policy">Honor Code and Collaboration Policy</h2>
+<p>Software Engineering is as at least as much, but typically more, about collaboration as it is about individual production. This course will emphasize technical collaboration, team work, community building, and leadership. Group work with peer students enrolled in the course and collaboration with course staff is encouraged unless made explicit otherwise (such as on quizzes and individual projects). The most significant graded portion of this course will be a group-based project.</p>
+<p><strong>Collaboration on submitted work in this course should cite all collaborators clearly and distinctly.</strong></p>
+<p>Any code snippets, derivations, or generated code found or produced through artificial intelligence tools outside of the official documentation for a language, framework, or package, and made use of in your work, should be clearly cited and linked back to with a complete URL. <strong>You must understand and be able to explain any code snippet, derivation, or generated code you make use of in your work.</strong> For example, you do not need to cite an example usage found in a Python package imported into a project. However, you do need to cite an example usage found in StackOverflow, generated through ChatGPT, or similar sources.</p>
+<h3 id="code-review-test">Code Review Test</h3>
+<p>The instructor reserves the right to, at any time, ask you to submit to a “code review” test with me or a TA. We may ask you to meet to explain any line of code or decision made in your program. Using code, even if cited, that you do not understand and cannot explain is intellectually dishonest and a lost learning opportunity for you.</p>
+<p>Thus, you should be able to comfortably explain the code you hand in for credit. Should you be unable to do so, your grade will be penalized for the assignment in question and you may be taken to honor court depending on the severity of the infraction.</p>
+<h2 id="grading-scale-breakdown">Grading Scale Breakdown</h2>
+<ul>
+<li>A: 93-100</li>
+<li>A-: 90-92</li>
+<li>B+: 87-89</li>
+<li>B: 83-86</li>
+<li>B-: 80-82</li>
+<li>C+: 77-79</li>
+<li>C: 73-76</li>
+<li>C-: 70-72</li>
+<li>D: 60-69</li>
+<li>F: 59 or below</li>
+</ul>
+<p>In cases of fractional points, grades will be rounded up if greater than 0.4999999999…</p>
+<h2 id="course-schedule">Course Schedule</h2>
+<p>See the course itinerary on the home page of the web site.</p>
+<h2 id="feedback">Feedback</h2>
+<p>If you have suggestions on how to improve the course or just want to leave some positive, encouraging feedback for the TAs or I, please <a href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform" target="_blank">give us feedback</a>. If you make a suggestion we’re able to act on, while we still have time to, we’re more than happy to!</p>
+<h2 id="diversity-statement">Diversity Statement</h2>
+<p>The instructor and the undergraduate teaching assistant team value the perspectives of individuals from all backgrounds reflecting the diversity of our students. We broadly define diversity to include race, gender identity, national origin, ethnicity, religion, social class, age, sexual orientation, political background, and physical and learning ability. We strive to make this classroom an inclusive space for all students. Please let us know if there is anything we can do to improve; we appreciate suggestions.</p>
+<h2 id="title-ix-resources">Title IX Resources</h2>
+<p>Any student who is impacted by discrimination, harassment, interpersonal (relationship) violence, sexual violence, sexual exploitation, or stalking is encouraged to seek resources on campus or in the community. Please contact the Director of Title IX Compliance (Adrienne Allison – <a href="mailto:Adrienne.allison@unc.edu" class="email">Adrienne.allison@unc.edu</a>), Report and Response Coordinators in the Equal Opportunity and Compliance Office (<a href="mailto:reportandresponse@unc.edu" class="email">reportandresponse@unc.edu</a>), Counseling and Psychological Services (confidential), or the Gender Violence Services Coordinators (<a href="mailto:gvsc@unc.edu" class="email">gvsc@unc.edu</a>; confidential) to discuss your specific needs. Additional resources are available at safe.unc.edu.</p>
+<h2 id="counseling-and-psychological-services">Counseling and Psychological Services</h2>
+<p>CAPS is strongly committed to addressing the mental health needs of a diverse student body through timely access to consultation and connection to clinically appropriate services, whether for short or long-term needs. Go to their website: <a href="https://caps.unc.edu/" target="_blank">https://caps.unc.edu/</a> or visit their facilities on the third floor of the Campus Health Services building for a walk-in evaluation to learn more. (source: Student Safety and Wellness Proposal for EPC, Sep 2018)</p>
+</div>
+
+       
+
+    </div> 
+
+    <div class="authors-box bg-light mt-4 py-3 ps-4">
+      <span> Contributor(s): Kris Jordan</span>
+    </div>
+  </div>
+  <div class='link-page mt-3 container'>
+    <footer>
+      <h6 class="text-center align-middle footer-text">&copy; 2022 <a href="https://krisjordan.com">Kris Jordan</a>
+        - <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform?usp=sf_link">Feedback
+          Form</a>
+        - Made with 💛 in <a href="https://cs.unc.edu/">Chapel Hill</a></h6>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</body>
+
+</html>
