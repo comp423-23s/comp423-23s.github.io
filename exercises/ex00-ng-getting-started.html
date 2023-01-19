@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> EX00 - Angular, Getting Started - COMP423 - 23S</title>
+  <link rel="icon" type="image/png" href="/static/tabbrand.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/static/styles.css?v=1674137416.1820993">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+    <div class="container">
+      <a href="/" class="navbar-brand">COMP423</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="/">agenda</a>
+          </li>
+          <li class="nav-item">
+            <a href="/support" class="nav-link">support</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="exercises-page" class="container">
+    <div class="row pt-4">
+      <div class="col-12">
+        <h2>EX00 - Angular, Getting Started</h2>
+        <hr class="title" />
+      </div>
+    </div>
+
+    <div class="container">
+                <div class="content"><h2 id="complete-the-prerequisites">0. Complete the Prerequisites</h2>
+<ol type="1">
+<li>Install Docker Desktop</li>
+<li>Be sure the Docker Desktop program is <em>actually running</em> (check your status bar)</li>
+<li>Check for Docker Updates and Install Them</li>
+<li>Install VSCode</li>
+<li>Install VSCode Extension for DevContainers (Go to Extensions, search for Containers, select the official Microsoft extension for Dev Containers)</li>
+</ol>
+<h2 id="accept-the-github-classroom-assignment">1. Accept the GitHub Classroom Assignment</h2>
+<p>Accept Github Classroom Project via this link: https://classroom.github.com/a/-C4xC-O-</p>
+<h2 id="clone-the-project-locally-on-your-machine">2. Clone the project locally on your machine</h2>
+<p>You can do achieve this through the terminal or via VSCode. At this point in your CS career, we are hopeful you are able to remember, or search to remind yourself, how to clone a <code>git</code> repository from GitHub. Searches along the lines of “clone repository in vs code” should prove fruitful.</p>
+<h2 id="open-the-cloned-repositorys-directory-in-vscode">3. Open the cloned repository’s directory in VSCode</h2>
+<p>You will see the project files contain starter files for Angular’s Getting Started tutorial. There are lots of files! Do not let this overwhelm you. You will gain more comfort with the purposes of each in due time.</p>
+<h2 id="devcontainer---rebuild-and-reopen-in-container">4. DevContainer - Rebuild and Reopen in Container</h2>
+<p>Now for the <em>magical</em> step that involves DevContainers. Open VSCode’s command palette and look for “Rebuild and Reopen in Container.” This step will take a few minutes. Sit back and relax. Effectively what is happening here is a complete, virtualized Linux server environment is being built on the fly and all of the required software packages and development kits are being installed. We will explore what is going on behind the scenes here, as well as how to build your own DevContainers for your own projects, very soon. For now know that this step is taking care of a multi-step setup and installation process that otherwise would have taken you 30 minutes to an hour to do on your own, assuming all went to plan.</p>
+<h2 id="after-vscode-reopens-in-the-devcontainers-environment-open-a-terminal">5. After VSCode Reopens in the DevContainer’s Environment, Open a Terminal</h2>
+<p>You should be able to open a new terminal and see a prompt that looks like this: <code>/workspace (main) &gt;&gt;</code></p>
+<p>Congratulations, you have started up your first DevContainer! This <code>zsh</code> shell is running inside the container, which has Node.js, Angular, and more installed. The <code>/workspace</code> is the working directory your terminal is in, which is where your repository’s files are mounted, and <code>(main)</code> refers to the branch your <code>HEAD</code> is on. This custom shell prompt is one of the niceties that was setup in the container build.</p>
+<h2 id="start-the-angular-development-server">6. Start the Angular Development Server</h2>
+<p>Try running the command <code>ng serve</code> in the VSCode Terminal. The <code>ng</code> is short for a<strong>NG</strong>gular and is a command you will see is used regularly in the Angular development process.</p>
+<p>Open a web browser and navigate to <code>localhost:4200</code>. You should see “My Store”, which is the starting point for Angular’s Getting Started tutorial.</p>
+<h2 id="create-a-branch-for-getting-started">7. Create a Branch for Getting Started</h2>
+<p>Let’s practice getting in the habbit of creating a branch for work in progress. Open a new terminal window in VSCode (look for the plus button) and try the following commands:</p>
+<ol type="1">
+<li><code>git branch getting-started</code></li>
+<li><code>git switch getting-started</code></li>
+</ol>
+<p>Notice how your shell prompt changes to reflect the branch you are working on! Woo! These two steps can be combined in a single command with a special flag of <code>switch</code>, such as <code>git switch --create &lt;new-branch&gt;</code>. In this example, the two commands could have been replaced with <code>git switch --create &lt;new-branch&gt;</code>.</p>
+<p>The official first tutorial the development team of Angular put together to give a tour of big ideas can be found here: <a href="https://angular.io/start" class="uri">https://angular.io/start</a></p>
+<p>Complete this first section on getting started, taking you to the point of listing products and seeing an alert of a product going on sale. Then, make a commit of your progress and merge it into the <code>main</code> branch.</p>
+<p>Note: If you get asked by VSCode to trust this repository in order to make changes, go ahead and do so.</p>
+<ol type="1">
+<li><code>git status</code> - Check the files changed.</li>
+<li><code>git add .</code> - In this scenario, we want to add all changed files.</li>
+<li><code>git status</code> - Confirm the files in staging/index are those we want to commit. Best practice!</li>
+<li><code>git commit -m 'Completed the Getting started section of Angular Getting Started'</code> - Create a commit</li>
+<li><code>git push origin getting-started</code> - Push your branch to your GitHub repository. If you check your GitHub project’s repository, in your Code tab, you will see a dropdown button with the <code>main</code> branch. Click it and you should see the <code>getting-started</code> branch. Notice switching between them changes the files you are browsing on GitHub.</li>
+<li><code>git switch main</code> - Back in your terminal, switch to the <code>main</code> branch’s last commit. Notice your work is gone!</li>
+<li><code>git merge getting-started</code> - Merge the <code>getting-started</code> branch into <code>main</code>. Notice, this is a Fast-forward!</li>
+<li><code>git push origin main</code> - Push your remote’s <code>main</code>, also causing it to fast-forward to the same commit as the <code>getting-started</code> branch refers to.</li>
+</ol>
+<p>The steps of this workflow may feel like a lot of overhead when working individually on a project, but practicing them now will help when it comes time <em>very soon</em> to work in pairs on projects.</p>
+<h2 id="create-a-branch-for-adding-navigation">8. Create a Branch for Adding Navigation</h2>
+<p>Follow the same process to create a local branch named <code>adding-navigation</code>, switch to it, and complete the “Adding navigation” section of the Angular Getting Started Tutorial: <a href="https://angular.io/start/start-routing" class="uri">https://angular.io/start/start-routing</a></p>
+<p>Once you have completed this section, follow the same workflow as before of adding files, creating a commit, pushing your branch, switching back to your main branch, merging the changes in, and so on.</p>
+<p>We will look for the existance of these branches in your project’s history as part of the rubric for this exercise, so be sure to follow the steps in the previous section for each of the following sections, as well.</p>
+<h2 id="create-a-branch-for-managing-data">9. Create a Branch for Managing Data</h2>
+<p>Follow the same process to create a local branch named <code>managing-data</code>, switch to it, and complete the “Adding navigation” section of the Angular Getting Started Tutorial: <a href="https://angular.io/start/start-data" class="uri">https://angular.io/start/start-data</a></p>
+<p>Once you have completed this section, follow the same workflow as before of adding files, creating a commit, pushing your branch, switching back to your main branch, merging the changes in, and so on.</p>
+<h2 id="create-a-branch-for-using-forms-for-user-input">10. Create a Branch for Using forms for user input</h2>
+<p>Follow the same process to create a local branch named <code>forms-ui</code>, switch to it, and complete the “Adding navigation” section of the Angular Getting Started Tutorial: <a href="https://angular.io/start/start-forms" class="uri">https://angular.io/start/start-forms</a></p>
+<p>Once you have completed this section, follow the same workflow as before of adding files, creating a commit, pushing your branch, switching back to your main branch, merging the changes in, and so on.</p>
+<h2 id="great-work">Great work!</h2>
+<p>The GitHub submission for this exercise will open shortly with an announcement that follows!</p>
+</div>
+            </div>
+
+    <div class="authors-box bg-light mt-4 py-3 ps-4">
+      <span> Contributor(s):        K,        r,        i,        s,         ,        J,        o,        r,        d,        a, n</span>
+    </div>
+  </div>
+  <div class='link-page mt-3 container'>
+    <footer>
+      <h6 class="text-center align-middle footer-text">&copy; 2023 <a href="https://krisjordan.com">Kris Jordan</a>
+        - <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform?usp=sf_link">Feedback
+          Form</a>
+        - Made with 💛 in <a href="https://cs.unc.edu/">Chapel Hill</a></h6>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</body>
+
+</html>
