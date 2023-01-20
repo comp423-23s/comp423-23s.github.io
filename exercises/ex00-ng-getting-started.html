@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/static/styles.css?v=1674137416.1820993">
+  <link rel="stylesheet" href="/static/styles.css?v=1674184836.3831148">
 </head>
 
 <body>
@@ -70,6 +70,10 @@
 <li><code>git branch getting-started</code></li>
 <li><code>git switch getting-started</code></li>
 </ol>
+<blockquote>
+<p>Note: If you are on a Windows machine, run the following command to mark the directory as a trusted repository:</p>
+<pre><code>git config --global --add safe.directory /workspace</code></pre>
+</blockquote>
 <p>Notice how your shell prompt changes to reflect the branch you are working on! Woo! These two steps can be combined in a single command with a special flag of <code>switch</code>, such as <code>git switch --create &lt;new-branch&gt;</code>. In this example, the two commands could have been replaced with <code>git switch --create &lt;new-branch&gt;</code>.</p>
 <p>The official first tutorial the development team of Angular put together to give a tour of big ideas can be found here: <a href="https://angular.io/start" class="uri">https://angular.io/start</a></p>
 <p>Complete this first section on getting started, taking you to the point of listing products and seeing an alert of a product going on sale. Then, make a commit of your progress and merge it into the <code>main</code> branch.</p>
