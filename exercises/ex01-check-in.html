@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> EX01 - Check-in for the Computer Science Experience Labs - COMP423 - 23S</title>
+  <link rel="icon" type="image/png" href="/static/tabbrand.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/static/styles.css?v=1674833269.8335748">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+    <div class="container">
+      <a href="/" class="navbar-brand">COMP423</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="/">agenda</a>
+          </li>
+          <li class="nav-item">
+            <a href="/support" class="nav-link">support</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="exercises-page" class="container">
+    <div class="row pt-4">
+      <div class="col-12">
+        <h2>EX01 - Check-in for the Computer Science Experience Labs</h2>
+        <hr class="title" />
+      </div>
+    </div>
+
+    <script src="/static/scripts/toggle-handler.js"></script>
+    
+    <div class="row px-4">
+        <div id="box" class="toc col-xl-3 col-lg-3 order-1 order-lg-2" role="doc-toc">
+            <div id="menu-overview" class="link-page box">
+                <button id="overview-button" class="btn btn-ov" onclick="hideshow()">Overview  <img id="button-img" class="filter-icon" src="/static/components/Itinerary/arrow-up.svg" style="height:15px; padding-left: 4px;"></button>
+                <div id="overview-links">
+                    <div id="TOC" role="doc-toc">
+                        <ul class="overview-item"><ul>
+<li><a href="#workflow-expectations">Workflow Expectations</a></li>
+<li><a href="#deadlines">Deadlines</a></li>
+<li><a href="#personas">Personas</a></li>
+<li><a href="#stories">Stories</a>
+<ul>
+<li><a href="#story-a">Story A</a></li>
+<li><a href="#story-b">Story B</a></li>
+<li><a href="#story-c">Story C</a></li>
+<li><a href="#story-d">Story D</a></li>
+<li><a href="#story-e">Story E</a></li>
+<li><a href="#technical-requirements">Technical Requirements</a></li>
+</ul></li>
+<li><a href="#optional-challenges">Optional Challenges</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+</ul>
+</</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="content col-xl-9 col-lg-9 order-2 order-lg-1 pt-3"><p>In this exercise, you and a partner will create the front-end user interface for a simple check-in system for the UNC CS Experience Lab.</p>
+<h2 id="workflow-expectations">Workflow Expectations</h2>
+<p>Pair Program, ideally in person, on stories A, B, and C. Do so in work-in-progress branches that get pushed to your team’s repository and merged back into the main branch. Each member of the pair should be the commit author for at least one of the subtasks. You are encouraged to create a branch per story and a commit per subtask completion. Once all subtasks are complete, merge the story’s commits back into <code>main</code>.</p>
+<p>For Stories D and F, one partner should create a pull request for the completion of the story and the other should review it and merge it into <code>main</code> via GitHub’s interface. Each partner should <em>at least</em> create one pull request <em>and</em> merge a pull request from the other partner. For reference on pull requests see <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">Creating a pull request</a> and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request">merging a pull request</a>.</p>
+<h2 id="deadlines">Deadlines</h2>
+<ul>
+<li>Wednesday 2/1 - Stories A, B, and C</li>
+<li>Friday 2/3 - All Stories</li>
+</ul>
+<hr />
+<h2 id="personas">Personas</h2>
+<p>There are three personas for our user stories in this exercise.</p>
+<p>Sol Student - Sol is a CS major who will visit and return to the CS Experience Lab as a productivity space.</p>
+<p>Arden Ambassador - Arden is an ambassador to the CS Experience Lab who is volunteering at the check-in desk.</p>
+<p>Merritt Manager - Merritt is a manager of the CS Experience Lab who evaluates usage of the space.</p>
+<hr />
+<h2 id="stories">Stories</h2>
+<h3 id="story-a">Story A</h3>
+<p>As any persona, I want to be able to click through to any of the story tasks below so that I can quickly navigate the application.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>All personas should find links to the routes which feature their stories on a home page URL path of “/” in the application. Clarification: Since there is no “user login” in this simple application, links to all stories will be presented to anyone using your application at this stage. Add links to the home page to each story’s component as you implement it.</li>
+</ol>
+<h3 id="story-b">Story B</h3>
+<p>As Sol Student, I want to register for the CS Experience Lab on my first visit to the colab space so that I can easily check-in in the future.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>Sol Student will find the navigation form at the URL path “/register”.</li>
+<li>Sol Student will need to register with their first name, last name, and PID.</li>
+<li>Sol Student should see a thank-you message after registering that includes their name and the register form fields should be cleared.</li>
+<li>Sol Student should have a link to return home after registration.</li>
+</ol>
+<h3 id="story-c">Story C</h3>
+<p>As Merritt Manager, I want to be able to see a listing of all registered members.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>Merritt Manager will find these listings at the URL path “/stats”.</li>
+<li>Merritt Manager will see a list of registered members including their first and last names, and PID</li>
+</ol>
+<p>Checkpoint A due Wednesday</p>
+<h3 id="story-d">Story D</h3>
+<p>As Arden Ambassador, I want to be able to check Sol Student in using only thier PID so that I can easily check them in.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>Arden Ambassador will find the checkin form at the URL path “/checkin”.</li>
+<li>Arden Ambassador will need to enter a 9-digit PID. If the PID is not 9-digits exactly when the form is submitted, an error message should indicate bad PID. Additional note: barcode scanning is <em>not</em> a part of this subtask or story.</li>
+<li>After submitting the form, Arden Ambassador should see a message with the first and last name of the student who checked in. The 9-digit PID field should be cleared.</li>
+<li>After submitting the form, if the 9-digit PID is not registered, Arden Ambassador should see a message letting them know the PID could not be found. The 9-digit PID field should not be cleared.</li>
+</ol>
+<h3 id="story-e">Story E</h3>
+<p>As Merritt Manager, I want to be able to see a listing of all checkins.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>Merritt Manager will find these listings at the URL path “/stats”.</li>
+<li>Merritt Manager will see a list of registered members that is sorted by first name and includes their last name.</li>
+<li>Merrit Manager will see a list of checkins that is sorted by the checking day and time and includes the checked in member’s first and last name.</li>
+</ol>
+<hr />
+<h3 id="technical-requirements">Technical Requirements</h3>
+<ol type="1">
+<li>Use separate components for Registration, Stats, and CheckIn user interfaces</li>
+<li>Use services for Registrations and CheckIns. The Checkin service should depend on Registrations.</li>
+</ol>
+<h2 id="optional-challenges">Optional Challenges</h2>
+<ol type="1">
+<li>Make sure the user agrees to community standards in Subtask A.3.</li>
+<li>Validation of 9-digit PID</li>
+<li>Subtask A.4: Sol Student should not be able to register if their PID is already registered and should be presented with a message letting them know the PID is registered.</li>
+<li>Automatically redirect the user back to home after registration and check-in.</li>
+<li>Style the HTML using CSS to make it look <em>pretty</em>.</li>
+<li>Improve upon the HTML of the components with error messages contained in the page, with styling, rather than alerts.</li>
+<li>Create a child component for notifications (such as messages) that can be used in CheckIn and Registration.</li>
+</ol>
+<h2 id="getting-started">Getting Started</h2>
+<p>Instructions for getting started and setting up pairs will be distributed when pairs post.</p>
+</div>
+
+       
+
+    </div> 
+
+    <div class="authors-box bg-light mt-4 py-3 ps-4">
+      <span> Contributor(s): Kris Jordan</span>
+    </div>
+  </div>
+  <div class='link-page mt-3 container'>
+    <footer>
+      <h6 class="text-center align-middle footer-text">&copy; 2023 <a href="https://krisjordan.com">Kris Jordan</a>
+        - <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform?usp=sf_link">Feedback
+          Form</a>
+        - Made with 💛 in <a href="https://cs.unc.edu/">Chapel Hill</a></h6>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</body>
+
+</html>
