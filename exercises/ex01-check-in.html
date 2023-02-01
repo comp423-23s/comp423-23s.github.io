@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/static/styles.css?v=1675272557.3579986">
+  <link rel="stylesheet" href="/static/styles.css?v=1675278568.3192377">
 </head>
 
 <body>
@@ -185,7 +185,9 @@
 <p>Now, open a browser to <code>localhost:8080</code> and you should see your built project. Note that if you make changes to your project they will not reload because this is a static, generated version of your project. You would need to rebuild; but we’ll get to that. The whole point is we are building in preparation of deploying to the internet.</p>
 <p>One key difference between running your project locally and running it on GitHub pages is that on GitHub pages, your project URL will be <code>&lt;domain&gt;/&lt;project-repo-name&gt;</code> whereas locally it is <code>localhost:8080/</code>. This difference in the “root” of your files being at <code>/</code> locally versus <code>/project-repo-name/</code> would take some extra configuration to replicate locally, so for now take it on trust that the steps you are about to take are based on expectations of GitHub pages. You can press <code>Ctrl+C</code> to signal for Caddy to stop.</p>
 <p>Let’s rebuild the project for your production environment with a custom <code>base-href</code>, which is required for your application to work with GitHub pages’ URL structure. This is going to be based on the name of your repository on GitHub and will be important to get correct, so double check it. Open your team’s repository on GitHub and grab your repository name. It should be something like: <code>ex01-checkin-team_XX</code></p>
-<p>Rebuild your angular project with a custom <code>base-href</code>: <code>ng build --base-href=/ex01-checkin-team_XX/</code> be sure to include the slashes and substitute the XX for your team name!</p>
+<p>Rebuild your angular project with a custom <code>base-href</code>:</p>
+<p><code>ng build --base-href=/ex01-checkin-team_XX/</code></p>
+<p>Be sure to include the slashes and substitute the XX for your team name!</p>
 <p>Add the files in your <code>docs</code> directory to a new commit and push your branch to GitHub: <code>git push origin gh-pages</code></p>
 <p>Back in GitHub, in your project’s settings, go to <code>Pages</code> and under “Build and deployment” select “Deploy from a branch”. Under branch, select your <code>gh-pages</code> branch. If it does not show up, go check previous steps. Then select your <code>/docs</code> directory. Save your changes.</p>
 <p>The build and deploy to GitHub Pages can take a few minutes, but if you refresh after a minute or two you should see a message at the top saying: “Your site is live at URL” and be able to click the URL to see your built site live in production on GitHub Pages! You can send this to your mom!</p>
