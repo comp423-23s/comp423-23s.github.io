@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> EX03 - Check-in Backend - COMP423 - 23S</title>
+  <link rel="icon" type="image/png" href="/static/tabbrand.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/static/styles.css?v=1676477784.8808222">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+    <div class="container">
+      <a href="/" class="navbar-brand">COMP423</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="/">agenda</a>
+          </li>
+          <li class="nav-item">
+            <a href="/support" class="nav-link">support</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="exercises-page" class="container">
+    <div class="row pt-4">
+      <div class="col-12">
+        <h2>EX03 - Check-in Backend</h2>
+        <hr class="title" />
+      </div>
+    </div>
+
+    <script src="/static/scripts/toggle-handler.js"></script>
+    
+    <div class="row px-4">
+        <div id="box" class="toc col-xl-3 col-lg-3 order-1 order-lg-2" role="doc-toc">
+            <div id="menu-overview" class="link-page box">
+                <button id="overview-button" class="btn btn-ov" onclick="hideshow()">Overview  <img id="button-img" class="filter-icon" src="/static/components/Itinerary/arrow-up.svg" style="height:15px; padding-left: 4px;"></button>
+                <div id="overview-links">
+                    <div id="TOC" role="doc-toc">
+                        <ul class="overview-item"><ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#workflow-expectations">Workflow Expectations</a></li>
+<li><a href="#deadlines">Deadlines</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#technical-requirements">Technical Requirements</a></li>
+<li><a href="#personas">Personas</a></li>
+<li><a href="#stories">Stories</a>
+<ul>
+<li><a href="#story-a">Story A</a></li>
+<li><a href="#story-b">Story B</a></li>
+<li><a href="#story-c">Story C</a></li>
+<li><a href="#story-d">Story D</a></li>
+<li><a href="#story-e">Story E</a></li>
+<li><a href="#story-f">Story F</a></li>
+</ul></li>
+<li><a href="#optional-challenges-no-credit">Optional Challenges (No Credit)</a></li>
+</ul>
+</</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="content col-xl-9 col-lg-9 order-2 order-lg-1 pt-3"><p>In this exercise, you and a partner will create the back-end API and integration with a front-end user interface for the simple check-in system began in EX01.</p>
+<h2 id="getting-started">Getting Started</h2>
+<ol type="1">
+<li>Find your new Team Name and paired partner on the sheet linked to from the Canvas announcement.</li>
+<li>Lookup their contact information in the <a href="https://directory.unc.edu">UNC Directory</a> if you do not have it already.</li>
+<li>E-mail them, if they have not e-mailed you already, and propose some of the next possible dates and times you can get together to pair program!</li>
+<li>Accept the assignment on GitHub. First see if your team name already exists and join your teammate there, if so. If your team has not been accepted, create it with the exact same name shown on the EX01 Pairing sheet, and your partner will join your team later. PLEASE BE CAREFUL TO NAME YOUR TEAM CORRECTLY AND/OR JOIN THE CORRECT TEAM. The assignment link is here: <a href="https://classroom.github.com/a/5O1_c-GC" class="uri">https://classroom.github.com/a/5O1_c-GC</a></li>
+<li>Both of you should clone and setup the VSCode development environment according to the <code>README.md</code> file in the repository.</li>
+</ol>
+<h2 id="workflow-expectations">Workflow Expectations</h2>
+<p>For this exercise, you should work on appropriately scoped work-in-progress feature branches you push to GitHub as progress is made. If any work is being completed remotely and asynchronously between you and your partner, you should do this work on a branch and create a pull request, with code review, for your partner to complete. Their job should be to merge in the code of the pull request via GitHub’s interface, unless there are merge conflicts in which case it is the PR submitter’s job to resolve them. Where possible, pair programming is strongly encouraged on this project, even if it needs to be done remotely over zoom and screen sharing.</p>
+<h2 id="deadlines">Deadlines</h2>
+<ol type="1">
+<li>RD03 - Thursday, February 16th</li>
+<li>EX03 - Thursday, February 23rd</li>
+</ol>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>The goal of this exercise is to achieve a similar outcome to EX01 in terms of functionality, <em>except</em> that the front-end will be fully connected with a server-side, back-end REST API powered by <a href="https://fastapi.tiangolo.com/">FastAPI</a>.</p>
+<p>The starting point for this exercise backtracks on EX01 and offers a simple starter example with a partially implemented Story B and fully implemented Story C. Before you begin working on this project with your partner, you should complete RD03 as pre-work. This guided reading takes you on a tour through the code base and zeroes in on some important aspects that will help you understand how the system is coming together.</p>
+<p>You are encouraged to keep your implementation as straightforward as possible before incorporating any elements from EX01, or optional extensions.</p>
+<p>While the stories are the same as before, there are a few specific technical requirements to lookout for on the implementation side. We will be looking more closely at some implementation details on this exercise.</p>
+<h2 id="technical-requirements">Technical Requirements</h2>
+<ol type="1">
+<li><p>20pts (1hr to get acclimated, 2min once you know what you need to do) - Registrations should “persist” in the backend via the provided <code>storage</code> functionality. This back-end API route and functionality is <em>already implemented</em> for you as an example. The front-end UI is also fully implemented in <code>frontend/src/app/registration/registration.component.ts</code>. You have a small bit of work to do to for the front-end to communicate with the correct back-end route, both HTTP method and path, using the <code>HttpClient</code> in <code>frontend/src/app/registration.service.ts</code>. The challenge of this technical requirement is purely understanding the system and <code>HttpClient</code>; once you are familiar, this is a <em>maddeningly simple</em> technical requirement to complete.</p></li>
+<li><p>20pts (1hr) - The route to create a checkin should be a POST and expects a <code>CheckinRequest</code> model object as its request body, as defined in <code>backend/checkin.py</code>. With a successful checkin, the route should respond with a <code>Checkin</code> object. Use the provided <code>storage</code> facilities for creating the checkin. If there is an error, respond with a status code of 422. Test your implementation using FastAPI’s <code>/docs</code>.</p></li>
+<li><p>20pts (1hr) - On the front-end of checkin, all the expectations of the behaviors for Story D remain.</p></li>
+<li><p>15pts (45m) - Before attempting this technical requirement, you should get a table of your checkins displaying per Story E. Your times will look like the following string: “2023-02-15T09:29:16.847509”. This is the textual encoding of date time data sent from the server. It’s in string form when the data arrives at your front-end, so you want to convert it to actual Date objects.</p></li>
+</ol>
+<blockquote>
+<p>In the service for checkins, where you implement the method that fetches all checkins from the server, before returning the observable of checkin array, you should <em>transform</em> the checkin data to convert the <code>created_at</code> property for each object from a <code>string</code> to a <code>Date</code> object. To do so, you should use the <code>pipe</code> functionality of an <code>rxjs</code> <code>Observable</code> in conjunction with <code>map</code>.</p>
+</blockquote>
+<blockquote>
+<p>To add some visibility into this step while you are working on it, try using <code>tap</code> in conjunction with <code>pipe</code> to log data to the browser’s developer console following the <code>map</code> operation. Read the official <code>rxjs</code> documentation on each of these operators to learn more.</p>
+</blockquote>
+<blockquote>
+<p>When this transformation is working, you will see the checkin created at time showing up in your front-end like “Wed Feb 15 2023 09:29:16 GMT-0500 (Eastern Standard Time)”. If you used a <code>tap</code> operator for development purposes, you should remove it once completed.</p>
+</blockquote>
+<ol start="5" type="1">
+<li><p>5pts (15m) - Complete Technical Requirement #4 before attempting this requirement. After transforming your data in the checkin service, on the front-end of stats, the reformat the displayed date of checkins showing to be “2023/02/15 @ 09:29AM” where each of the month, day, hour, and minute are zero padded. Look for information on Angular’s date pipe to implement this.</p></li>
+<li><p>10pts (2hr) - Implement the back-end of Story F and add your own extensions to <code>storage.py</code> to implement needed functionality. You should also implement unit tests for your functionality in <code>storage_test.py</code>. Your documentation conventions should follow those established in these two files. To run your unit tests, you have two options. From a new terminal, change your directory to backend and try running <code>pytest</code>. Alternatively, use VSCode’s built-in Testing tool in the sidebar. Provide tests that demonstrate your delete functionality is working in the <code>storage</code> layer before worrying with routes or front-end functionality. Once you are convinced your <code>storage</code> implementation is working, add a route using the <code>DELETE</code> method to your API and test that it works via the FastAPI <code>/docs</code> explorer.</p></li>
+<li><p>10pts (2hr) - Implement the front-end of Story F such that a button or link on a user’s row can be clicked to initiate the deletion of a user’s account. After the deletion succeeds, you should “reinitialize” the observables in the stats component to force the data to be reloaded in its view.</p></li>
+</ol>
+<h2 id="personas">Personas</h2>
+<p>The three personas are the same as in EX01.</p>
+<p>Sol Student - Sol is a CS major who will visit and return to the CS Experience Lab as a productivity space.</p>
+<p>Arden Ambassador - Arden is an ambassador to the CS Experience Lab who is volunteering at the check-in desk.</p>
+<p>Merritt Manager - Merritt is a manager of the CS Experience Lab who evaluates usage of the space.</p>
+<h2 id="stories">Stories</h2>
+<p>The stories are <em>mostly</em> the same as in EX01. Some subtle changes exist in Story E and an additional Story F has been added.</p>
+<h3 id="story-a">Story A</h3>
+<p>As any persona, I want to be able to click through to any of the story tasks below so that I can quickly navigate the application.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>All personas should find links to the routes which feature their stories on a home page URL path of “/” in the application. Clarification: Since there is no “user login” in this simple application, links to all stories will be presented to anyone using your application at this stage. Add links to the home page to each story’s component as you implement it.</li>
+</ol>
+<h3 id="story-b">Story B</h3>
+<p>As Sol Student, I want to register for the CS Experience Lab on my first visit to the colab space so that I can easily check-in in the future.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>Sol Student will find the navigation form at the URL path “/register”.</li>
+<li>Sol Student will need to register with their first name, last name, and PID.</li>
+<li>Sol Student should see a thank-you message after registering that includes their name and the register form fields should be cleared.</li>
+<li>Sol Student should have a link to return home after registration.</li>
+</ol>
+<h3 id="story-c">Story C</h3>
+<p>As Merritt Manager, I want to be able to see a listing of all registered members.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>Merritt Manager will find these listings at the URL path “/stats”.</li>
+<li>Merritt Manager will see a list of registered members including their first and last names, and PID.</li>
+</ol>
+<h3 id="story-d">Story D</h3>
+<p>As Arden Ambassador, I want to be able to check Sol Student in using only thier PID so that I can easily check them in.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>Arden Ambassador will find the checkin form at the URL path “/checkin”.</li>
+<li>Arden Ambassador will need to enter a 9-digit PID. If the PID is not 9-digits exactly when the form is submitted, an error message should indicate bad PID.</li>
+<li>After submitting the form, Arden Ambassador should see a message with the first and last name of the student who checked in. The 9-digit PID field should be cleared.</li>
+<li>After submitting the form, if the 9-digit PID is not registered, Arden Ambassador should see a message letting them know the PID could not be found. The 9-digit PID field should not be cleared.</li>
+</ol>
+<h3 id="story-e">Story E</h3>
+<p>As Merritt Manager, I want to be able to see a listing of all checkins.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>Merritt Manager will find these listings at the URL path “/stats”.</li>
+<li>Merritt Manager will see a list of registered members. The order of these members is unimportant for EX03.</li>
+<li>Merrit Manager will see a list of checkins including their date, time, and the name of the user who checked in.</li>
+</ol>
+<h3 id="story-f">Story F</h3>
+<p>As Merritt Manager, I want to be able to delete registered users from the system.</p>
+<p>Subtasks:</p>
+<ol type="1">
+<li>Merritt Manager will be able to delete a user from the URL path “/stats”.</li>
+<li>Deleting a user will also delete all of their associated checkins.</li>
+<li>Deleting a user should automatically purge their information from the stats view upon success.</li>
+</ol>
+<hr />
+<h2 id="optional-challenges-no-credit">Optional Challenges (No Credit)</h2>
+<ol type="1">
+<li>(Easy) Implement your own <code>reverse</code> pipe such that you can reverse the orders of checkin in the Angular template. Search for how to implement a pipe in Angular.</li>
+<li>(Medium) Avoid using <code>alert</code> for surfacing messages to the user. Try creating a service for user messages that your components can post messages to. Then create a component which exists outside of the router outlet in <code>app.component.html</code> that displays the messages from this service and allows the user to hide messages with a button press. For an added challenge, try making the messages disappear after a little bit of time with something like <code>rxjs</code>’s <code>timer</code>.</li>
+<li>(Challenging) When checking a user in, allow the text box to search by name or PID and disable the ability to submit the form until a valid user is selected. Here you will want to use a text field’s <code>valueChanges</code> observable. Consider piping the observable through <code>debounceTime</code> and <code>mergeMap</code> operators.</li>
+</ol>
+</div>
+
+       
+
+    </div> 
+
+    <div class="authors-box bg-light mt-4 py-3 ps-4">
+      <span> Contributor(s): Kris Jordan</span>
+    </div>
+  </div>
+  <div class='link-page mt-3 container'>
+    <footer>
+      <h6 class="text-center align-middle footer-text">&copy; 2023 <a href="https://krisjordan.com">Kris Jordan</a>
+        - <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform?usp=sf_link">Feedback
+          Form</a>
+        - Made with 💛 in <a href="https://cs.unc.edu/">Chapel Hill</a></h6>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</body>
+
+</html>
