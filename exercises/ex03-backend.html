@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/static/styles.css?v=1677164869.376447">
+  <link rel="stylesheet" href="/static/styles.css?v=1677181661.3389807">
 </head>
 
 <body>
@@ -64,6 +64,24 @@
 <li><a href="#story-d">Story D</a></li>
 <li><a href="#story-e">Story E</a></li>
 <li><a href="#story-f">Story F</a></li>
+</ul></li>
+<li><a href="#build-automation-and-production-deployment">Build Automation and Production Deployment</a>
+<ul>
+<li><a href="#accessing-cloud-infrastructure">Accessing Cloud Infrastructure</a>
+<ul>
+<li><a href="#install-openshift-cli-client-on-your-host-machine">Install OpenShift CLI Client on your Host Machine</a></li>
+<li><a href="#login-to-openshift-cli-tool">Login to OpenShift CLI Tool</a></li>
+</ul></li>
+<li><a href="#build-automation">Build Automation</a>
+<ul>
+<li><a href="#add-a-top-level-dockerfile-for-building-the-production-image.">Add a top-level Dockerfile for building the production image.</a></li>
+<li><a href="#deploy-key-secrets">Deploy Key Secrets</a></li>
+<li><a href="#create-an-app">Create an App</a></li>
+</ul></li>
+<li><a href="#management">Management</a>
+<ul>
+<li><a href="#deleting-when-youre-done-or-hit-a-road-block">Deleting when you’re done or hit a road block</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#optional-challenges-no-credit">Optional Challenges (No Credit)</a></li>
 </ul>
@@ -170,7 +188,147 @@
 <li>Deleting a user should automatically purge their information from the stats view upon success.</li>
 </ol>
 <hr />
-<h2 id="optional-challenges-no-credit">Optional Challenges (No Credit)</h2>
+<h1 id="build-automation-and-production-deployment">Build Automation and Production Deployment</h1>
+<p>In this part of the project, you will establish a cloud build and production deployment infrastructure. The infrastructure you will work in, Kubernetes and Red Hat OpenShift, are industrial-grade platforms with a significant amount of flexibility. Admittedly, our setup will be modest in comparison to what is possible for running applications at internet scale on such a system, but make no mistake about it: this is very real cloud infrastructure and represents most of the key components you will encounter in a modern, industry-grade production system.</p>
+<h2 id="accessing-cloud-infrastructure">Accessing Cloud Infrastructure</h2>
+<p><strong>Warning:</strong> if you are not on-campus when working with the cloud infrastructure, it will have the appearance of being “down”. This is due to a firewall preventing off-campus access without a virtual private network VPN connection. If you try to load Cloud Apps at any point this semester and see a non-responsive or blank web page, it is likely because you are not connected via Eduroam nor the VPN.</p>
+<p>If you are off-campus, you will need to establish a VPN connection in to make use of Carolina CloudApps: https://portal.ed.unc.edu/resources/connecting-to-vpn-for-off-campus-access-to-network-resources/</p>
+<p>If you are on-campus and connected to EduRoam or another UNC network, or after you have connected to the VPN from off-campus, visit <a href="https://cloudapps.unc.edu" class="uri">https://cloudapps.unc.edu</a> and click the “Sign up” link in the header. Agree to the terms to complete registration. Then, go back to the Cloud Apps home page and click the “Sign in” link. This should bring you to the Cloud Apps web application user interface which is Red Hat OpenShift running on Kubernetes.</p>
+<h3 id="install-openshift-cli-client-on-your-host-machine">Install OpenShift CLI Client on your Host Machine</h3>
+<p>Once you are logged in to Carolina CloudApps, navigate to the Command Line Tools download page: https://console.apps.cloudapps.unc.edu/command-line-tools</p>
+<p>The following is primarily an excerise in system administration fundamentals. While not a <em>programming</em> skill, becoming comfortable with the actions and ideas you will need to take in order to install a plain-old binary program on your system is an important rite of passage.</p>
+<p>These actions will be taking place on your <em>host</em> machine (e.g. macOS or Windows) and <em>not</em> your dev container.</p>
+<p>From the downloads page, you will download a zip file containing the <code>oc</code> CLI program for your computer. You will need to install this program in a directory somewhere on your host machine included in your <code>$PATH</code> list of directories. This concept of adding a binary program (or script) to somewhere on a machine’s <code>$PATH</code> is an important one to understand as a software engineer.</p>
+<p>As a brief reminder, the <code>$PATH</code> environment variable contains a list of all directories that will be scanned, in order, looking for a program to run. When you type <code>python3 -m pip</code>, for example, the directories listed in the <code>$PATH</code> will be checked until a program named <code>python3</code> is found and that is how it is decided for it to be used as the executable in your command.</p>
+<p>From a bash or zsh terminal on your host machine (<strong>not your DevContainer’s in VSCode!</strong>) try running <code>echo $PATH</code> to see a list of directories. On Mac, you will likely see <code>/usr/local/bin</code> as one of the entries. On Windows, you will see a path including a directory with <code>Program Files</code> in the name. Use the <code>mv</code> command-line utility to move the <code>oc</code> binary file (<code>oc.exe</code> on Windows). After successfully doing so, you should be able to run the command <code>oc</code> and see some output starting with “OpenShift Client”.</p>
+<p>If, on Mac, you see a pop-up indicating a program cannot be run unsafely, you will need to open your system’s Privacy and Security settings, scroll down to the Security section, select the radio option “Allow applications downloaded from App Store and identified developers” and look for a button regarding giving permission to the program ‘oc’ to run. You will need to give this permission and then try running <code>oc</code> again.</p>
+<h3 id="login-to-openshift-cli-tool">Login to OpenShift CLI Tool</h3>
+<p>Once you have successfully installed OpenShift CLI on your host machine, you will need to “login” from your local CLI to connect with Carolina Cloud Apps. Back in the Cloud Apps web site, look for your name in the top right, click it and select “Copy login command”.</p>
+<p>From here, click “Display Token”. In the first blue/gray box labeled “Log in with this token”, copy the command in its entirety and paste it into your host’s terminal. Press enter. You should see confirmation that you are logged in as your onyen and using a project also titled as your onyen. You are now logged in to the OpenShift Command-line Interface!</p>
+<h2 id="build-automation">Build Automation</h2>
+<p>The build system we will use is OpenShift’s Dockerfile-based build strategy. The big picture idea here is when a build is initiated your repository will be cloned from GitHub by the Cloud Apps builder system. It will look for a <code>Dockerfile</code>, which you will setup shortly, that guides the build of an image. This is <em>similar</em> to the DevContainer build process and image you are using for development, but the production image will be a precompiled <em>snapshot</em> of your project at the specific commit of your <code>main</code> branch when the build initiates. The front-end will be compiled and minified, like you previously learned how to do manually to deploy the front-end exercise, and the backend files will be copied in. Subsequent builds can be initiated as your project progresses and new commits are added to your <code>main</code> branch. Each build will produce a new versioned image in a “stream” of images such that if you needed to revert back to a previous version you could use an old image from earlier in the stream of versioned images. This style of build and deploy is in the spirit of “<a href="https://devopscube.com/immutable-infrastructure/">immutable infrastructure</a>,” a modern DevOps best practice.</p>
+<h3 id="add-a-top-level-dockerfile-for-building-the-production-image.">Add a top-level Dockerfile for building the production image.</h3>
+<p>In the top-level of your workspace, outside of frontend/backend/.devcontainer, add the following contents to a new file named <code>Dockerfile</code>:</p>
+<pre><code># Front-end Build Steps
+FROM node:18 as build
+COPY ./frontend/package.json /workspace/frontend/package.json
+COPY ./frontend/angular.json /workspace/frontend/angular.json
+WORKDIR /workspace/frontend
+RUN npm install -g @angular/cli &amp;&amp; npm install
+ENV SHELL=/bin/bash
+RUN ng analytics disable
+COPY ./frontend/src /workspace/frontend/src
+COPY ./frontend/*.json /workspace/frontend
+RUN ng build --optimization --output-path ../static
+
+# Back-end Build Steps
+FROM python:3.11
+RUN python3 -m pip install --upgrade pip
+COPY ./backend/requirements.txt /workspace/backend/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /workspace/backend/requirements.txt
+COPY --from=build /workspace/static /workspace/static
+COPY ./backend /workspace/backend
+WORKDIR /workspace/backend
+CMD [&quot;uvicorn&quot;, &quot;main:app&quot;, &quot;--host&quot;, &quot;0.0.0.0&quot;, &quot;--port&quot;, &quot;8080&quot;]
+ENV TZ=&quot;America/New_York&quot;
+EXPOSE 8080</code></pre>
+<p>These contents are build steps for preparing the production Docker image. Unlike in development, where you run <code>ng serve</code>, notice in the front-end build steps you are seeing <code>ng build</code> as the ultimate command that builds production bundles of your Angular application just like you did in EX01. The second part of the build process involves starting from the latest <code>python:3.11</code> image and installing 3rd party dependencies from <code>requirements.txt</code>, copying backend code from the repository to the image, copying the static assets from the front-end phase of the build, specifying how to start up the <code>uvicorn</code> server, setting the server’s time zone, etc.</p>
+<p>Add this file to your project and be sure it is included on a commit pushed to the <code>main</code> branch on GitHub before continuing on.</p>
+<h3 id="deploy-key-secrets">Deploy Key Secrets</h3>
+<p>Before OpenShift’s builder process is able to clone your repository from GitHub, we need to establish a means for OpenShift to <em>authenticate</em> itself to gain access to your private repository. This will closely resemble how <em>you</em> authenticate yourself with GitHub, but with the key difference it’s the builder process running on Carolina Cloud app’s computers– not yours!– that needs to gain access to your GitHub repository.</p>
+<p>It is worth pausing to reflect on how sensitive this step is in real world applications: you are setting up a means to directly access your code in a private repository. At organizations you may find yourself employed by, or founding, the code in your private repositories are some of it’s most valuable assets and their secure handling is very important to maintaining their secrecy and protecting customers from hacks.</p>
+<p>It is for these reasons that you want to be very careful to never commit secrets to a <code>git</code> repository. The keys we are about to setup are considered secrets! (If you find yourself at an organization that breaks this rule: run.)</p>
+<p>To avoid accidentally commiting secrets to a project, one strategy is to be sure the filenames containing the secrets are added to the project’s <code>.gitignore</code>. Go ahead and add the following to your <code>.gitignore</code> file:</p>
+<p><code>deploy_key*</code></p>
+<p>Go ahead and make a commit with this change to <code>.gitignore</code> included in the commit.</p>
+<p><strong>DEVCONTAINER:</strong> Back in your DevContainer’s terminal, not your host’s, generate an SSH key:</p>
+<pre><code>ssh-keygen -t ed25519 -C &quot;GitHub Deploy Key for EX03&quot; -f ./deploy_key</code></pre>
+<p>You should now see the files <code>deploy_key</code>, which is the private/secret key, and <code>deploy_key.pub</code> which is the public key.</p>
+<p><strong>HOST:</strong> Back out in your host machine’s terminal, <code>cd</code> into your EX03 project on your host machine and run the following command to add the private key as a secret to your Cloud Apps account:</p>
+<pre><code>$ oc create secret generic comp423-ex03-deploykey \
+    --from-file=ssh-privatekey=./deploy_key 
+    --type=kubernetes.io/ssh-auth</code></pre>
+<p>You can verify this worked from two places:</p>
+<ol type="1">
+<li>The CLI. Try running <code>oc get secret comp423-ex03-deploykey</code> and you will see the name, type, and age of the secret.</li>
+<li>The Web UI. You should now be able to go to your OpenShift Develper view’s Secrets list and see <code>comp423-ex03-deploykey</code> listed as a secret in your project.</li>
+</ol>
+<p>Finally, you need to link your secret to the “builder” of OpenShift. Currently, only you have access in your account to your secret. This linking process gives access to the secure secret to the builder process responsible for cloning and building your project:</p>
+<pre><code>$ oc secrets link builder comp423-ex03-deploykey</code></pre>
+<p>Next, go to your GitHub Project’s Settings on GitHub.com. In the sidebar, look for the “Security” section’s “Deploy keys” option. Click “Add deploy key.”</p>
+<p>Add the title of “CloudApps - EX03 - <onyen>”. In VSCode, open the public key you just generated named <code>deploy_key.pub</code>, copy and paste its contents into the Key box. Do not allow write access. Save the key.</p>
+<h3 id="create-an-app">Create an App</h3>
+<p>Back in your host terminal, it’s time to create the app on OpenShift! Be sure to substitute <code>&lt;your-ex03-repository-name&gt;</code> with your actual repository’s name/URL on GitHub:</p>
+<pre><code>$ oc new-app python:3.11~git@github.com:comp423-23s/&lt;your-ex03-repository-name&gt;.git \
+    --source-secret=comp423-ex03-deploykey \
+    --name comp423-ex03 \
+    --strategy=docker</code></pre>
+<p>In the above command, the <code>python:3.11</code> preceding the tilde is specifying the base image of this project to be <code>python:3.11</code>, corresponding with the final stage of the <code>Dockerfile</code> build script you added to your project above. This is followed by the repo URL on GitHub, a reference to the secret key you just established, a name for the application, and finally the build strategy being Dockerfile-based as described previously.</p>
+<p>To “follow” the first build, run the next command. You will see some “errors” in pulling images and whatnot along the way, ignore these for as long as it’s making progress.</p>
+<p>When it’s completed, you should see “Push successful”. Additionally, if you go to OpenShift’s Developer View &gt; Topology, you should see your application here.</p>
+<pre><code>$ oc logs -f buildconfig/comp423-ex03</code></pre>
+<p>If the build fails for some reason, try deleting the app and starting again. To delete the app, run the command <code>oc delete all --selector app=comp423-ex03</code>.</p>
+<p>We will learn more about environment variables soon, but to set the MODE variable to “production”, run the following commands:</p>
+<pre><code>$ oc set env deployment/comp423-ex03 MODE=production
+$ oc set env deployment/comp423-ex03 --list # To see all env vars set</code></pre>
+<p>Once the build completes and your container is running it is protected from the internet by a firewall. To make a port on your application publicly accessible, we need to create a “route” to it in the Kubernetes. This is a different kind of route than an Angular route or a FastAPI route. This route will give you a publicly accessible means for accessing your container, running in a pod. First, you’ll expose the port 80 and bind it to port 8080, which your FastAPI server is running on. Second, you’ll create an edge route, which is what gives you a publicly accessible route.</p>
+<pre><code>$ oc expose deployment comp423-ex03 --port=80 --target-port=8080
+$ oc create route edge --service=comp423-ex03</code></pre>
+<p>In the web UI, if you go to Developer, Topology and select <code>comp423-ex03</code>, switch to the Resources. At the bottom you should see “Routes” with a location URL. Click that route to open up your web app. You’ll likely see a not found message in JSON, but if you add <code>/docs</code> to the end of the URL you should see the API docs UI.</p>
+<p>Woohoo!</p>
+<p>Now, let’s get the front-end working. The reason the base URL currently returns a “not found” is because of a key difference in the development container setup, where we run Angular’s Dev Server to host the HTML/JS/CSS, and in production we ultimately just have static files in the <code>/workspace/static</code> directory that were built as part of the <code>Dockerfile</code>’s build. We need our web server to host these files; luckily FastAPI’s infrastructure makes this straightforward.</p>
+<p>Add the following file to <code>backend</code> directory named <code>static_files.py</code>:</p>
+<pre><code>&quot;&quot;&quot;Single-page application middleware.
+
+Our application is organized as a single-page application (SPA). This middleware class
+extends the functionality of the StaticFiles middleware and was inspired by: 
+&lt;https://stackoverflow.com/questions/63069190/how-to-capture-arbitrary-paths-at-one-route-in-fastapi&gt;
+&quot;&quot;&quot;
+
+__author__ = &quot;Kris Jordan &lt;kris@cs.unc.edu&gt;&quot;
+
+import os
+
+from fastapi.staticfiles import StaticFiles
+
+
+class StaticFileMiddleware(StaticFiles):
+
+    def __init__(self, directory: os.PathLike, index=&quot;index.html&quot;) -&gt; None:
+        self.index = index
+        super().__init__(directory=directory, packages=None, html=True, check_dir=True)
+
+    def lookup_path(self, path: str) -&gt; tuple[str, os.stat_result]:
+        &quot;&quot;&quot;Returns the index file when no match is found.
+
+        Args:
+            path (str): Resource path.
+
+        Returns:
+            tuple[str, os.stat_result]: Returns a full path and stat result.
+        &quot;&quot;&quot;
+        full_path, stat_result = super().lookup_path(path)
+
+        if stat_result is None:
+            return super().lookup_path(self.index)
+        else:
+            return (full_path, stat_result)</code></pre>
+<p>Then add the following import to <code>main.py</code>’s import section:</p>
+<pre><code>from static_files import StaticFileMiddleware</code></pre>
+<p>Finally, add the following line after all of your other routes:</p>
+<pre><code>app.mount(&quot;/&quot;, StaticFileMiddleware(&quot;../static&quot;, &quot;index.html&quot;))</code></pre>
+<p>Add these changes and make a commit on <code>main</code>. Push your branch to GitHub. To initiate a new production build manually (we’ll see how to make this automatic on push shortly), run the following command on your host machine:</p>
+<pre><code>$ oc start-build comp423-ex03 --follow</code></pre>
+<p>The <code>--follow</code> option causes the output of the build to be streamed to your terminal. To disconnect, press <code>Ctrl+C</code>. Once the build completes, though, it will be deployed within a few seconds. Try refreshing your browser at the home page of your app and you should (hopefully) see your front-end working!</p>
+<h2 id="management">Management</h2>
+<p>We will spend more time in the future discussing the management of your cloud deployment in Kubernetes. To get a sense of the pieces that came together, though, you can list all resources in OpenShift related to the app:</p>
+<pre><code>$ oc get all --selector app=comp423-ex03 -o name</code></pre>
+<h3 id="deleting-when-youre-done-or-hit-a-road-block">Deleting when you’re done or hit a road block</h3>
+<p>Don’t do this until after grades are release, or you hit a road block, but to delete all resources in the app:</p>
+<pre><code>$ oc delete all --selector app=comp423-ex03</code></pre>
+<p>Note, this does not delete the Deploy Key Secret as its scope is outside of your app (it was needed to pull). You can delete that separately, though!</p>
+<hr />
+<h1 id="optional-challenges-no-credit">Optional Challenges (No Credit)</h1>
 <ol type="1">
 <li>(Easy) Implement your own <code>reverse</code> pipe such that you can reverse the orders of checkin in the Angular template. Search for how to implement a pipe in Angular.</li>
 <li>(Medium) Avoid using <code>alert</code> for surfacing messages to the user. Try creating a service for user messages that your components can post messages to. Then create a component which exists outside of the router outlet in <code>app.component.html</code> that displays the messages from this service and allows the user to hide messages with a button press. For an added challenge, try making the messages disappear after a little bit of time with something like <code>rxjs</code>’s <code>timer</code>.</li>
