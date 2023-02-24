@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/static/styles.css?v=1677181661.3389807">
+  <link rel="stylesheet" href="/static/styles.css?v=1677260372.30199">
 </head>
 
 <body>
@@ -246,8 +246,9 @@ EXPOSE 8080</code></pre>
 <p>You should now see the files <code>deploy_key</code>, which is the private/secret key, and <code>deploy_key.pub</code> which is the public key.</p>
 <p><strong>HOST:</strong> Back out in your host machine’s terminal, <code>cd</code> into your EX03 project on your host machine and run the following command to add the private key as a secret to your Cloud Apps account:</p>
 <pre><code>$ oc create secret generic comp423-ex03-deploykey \
-    --from-file=ssh-privatekey=./deploy_key 
+    --from-file=ssh-privatekey=./deploy_key
     --type=kubernetes.io/ssh-auth</code></pre>
+<p>If you are a Windows user, you may have to use the executable <code>./oc</code> instead of just <code>oc</code>, and run as administrator if using PowerShell (though we encourage using Windows terminal with git bash rather than PowerShell)</p>
 <p>You can verify this worked from two places:</p>
 <ol type="1">
 <li>The CLI. Try running <code>oc get secret comp423-ex03-deploykey</code> and you will see the name, type, and age of the secret.</li>
@@ -281,7 +282,7 @@ $ oc create route edge --service=comp423-ex03</code></pre>
 <pre><code>&quot;&quot;&quot;Single-page application middleware.
 
 Our application is organized as a single-page application (SPA). This middleware class
-extends the functionality of the StaticFiles middleware and was inspired by: 
+extends the functionality of the StaticFiles middleware and was inspired by:
 &lt;https://stackoverflow.com/questions/63069190/how-to-capture-arbitrary-paths-at-one-route-in-fastapi&gt;
 &quot;&quot;&quot;
 
