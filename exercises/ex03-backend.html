@@ -248,6 +248,7 @@ EXPOSE 8080</code></pre>
 <pre><code>$ oc create secret generic comp423-ex03-deploykey \
     --from-file=ssh-privatekey=./deploy_key 
     --type=kubernetes.io/ssh-auth</code></pre>
+<p>If you are a Windows user, you may have to use the executable <code>./oc</code> instead of just <code>oc</code>, and run as administrator if using PowerShell (though we encourage using Windows terminal with git bash rather than PowerShell)</p>
 <p>You can verify this worked from two places:</p>
 <ol type="1">
 <li>The CLI. Try running <code>oc get secret comp423-ex03-deploykey</code> and you will see the name, type, and age of the secret.</li>
