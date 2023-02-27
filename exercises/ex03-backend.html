@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/static/styles.css?v=1677514387.5589216">
+  <link rel="stylesheet" href="/static/styles.css?v=1677530785.4818168">
 </head>
 
 <body>
@@ -200,7 +200,7 @@
 <p>These actions will be taking place on your <em>host</em> machine (e.g. macOS or Windows) and <em>not</em> your dev container.</p>
 <p>From the downloads page, you will download a zip file containing the <code>oc</code> CLI program for your computer. You will need to install this program in a directory somewhere on your host machine included in your <code>$PATH</code> list of directories. This concept of adding a binary program (or script) to somewhere on a machine’s <code>$PATH</code> is an important one to understand as a software engineer.</p>
 <p>As a brief reminder, the <code>$PATH</code> environment variable contains a list of all directories that will be scanned, in order, looking for a program to run. When you type <code>python3 -m pip</code>, for example, the directories listed in the <code>$PATH</code> will be checked until a program named <code>python3</code> is found and that is how it is decided for it to be used as the executable in your command.</p>
-<p>From a bash or zsh terminal on your host machine (<strong>not your DevContainer’s in VSCode!</strong>) try running <code>echo $PATH</code> to see a list of directories. On Mac, you will likely see <code>/usr/local/bin</code> as one of the entries. On Windows, you will see a path including a directory with <code>Program Files</code> in the name. Use the <code>mv</code> command-line utility to move the <code>oc</code> binary file (<code>oc.exe</code> on Windows). After successfully doing so, you should be able to run the command <code>oc</code> and see some output starting with “OpenShift Client”.</p>
+<p>From a bash or zsh terminal on your host machine (<strong>not your DevContainer’s in VSCode!</strong>) try running <code>echo $PATH</code> to see a list of directories. On Mac, you will likely see <code>/usr/local/bin</code> as one of the entries. On Windows, you will see a path including a directory with <code>Program Files</code> in the name. Use the <code>mv</code> command-line utility to move the <code>oc</code> binary file (<code>oc.exe</code> on Windows). After successfully doing so, you should be able to run the command <code>oc</code> and see some output starting with “OpenShift Client”. On Mac, if you do not have permission to <code>mv</code> the file to the given directory, try prefixing the command with <code>sudo</code> which will attempt to run the command as an administrator of the computer.</p>
 <p>If, on Mac, you see a pop-up indicating a program cannot be run unsafely, you will need to open your system’s Privacy and Security settings, scroll down to the Security section, select the radio option “Allow applications downloaded from App Store and identified developers” and look for a button regarding giving permission to the program ‘oc’ to run. You will need to give this permission and then try running <code>oc</code> again.</p>
 <h3 id="login-to-openshift-cli-tool">Login to OpenShift CLI Tool</h3>
 <p>Once you have successfully installed OpenShift CLI on your host machine, you will need to “login” from your local CLI to connect with Carolina Cloud Apps. Back in the Cloud Apps web site, look for your name in the top right, click it and select “Copy login command”.</p>
@@ -257,7 +257,7 @@ EXPOSE 8080</code></pre>
 <p>Finally, you need to link your secret to the “builder” of OpenShift. Currently, only you have access in your account to your secret. This linking process gives access to the secure secret to the builder process responsible for cloning and building your project:</p>
 <pre><code>$ oc secrets link builder comp423-ex03-deploykey</code></pre>
 <p>Next, go to your GitHub Project’s Settings on GitHub.com. In the sidebar, look for the “Security” section’s “Deploy keys” option. Click “Add deploy key.”</p>
-<p>Add the title of “CloudApps - EX03 - <onyen>”. In VSCode, open the public key you just generated named <code>deploy_key.pub</code>, copy and paste its contents into the Key box. Do not allow write access. Save the key.</p>
+<p>Add the title of “CloudApps - EX03 - YOUR_ONYEN”. In VSCode, open the public key you just generated named <code>deploy_key.pub</code>, copy and paste its contents into the Key box. Do not allow write access. Save the key.</p>
 <h3 id="create-an-app">Create an App</h3>
 <p>Back in your host terminal, it’s time to create the app on OpenShift! Be sure to substitute <code>&lt;your-ex03-repository-name&gt;</code> with your actual repository’s name/URL on GitHub:</p>
 <pre><code>$ oc new-app python:3.11~git@github.com:comp423-23s/&lt;your-ex03-repository-name&gt;.git \
