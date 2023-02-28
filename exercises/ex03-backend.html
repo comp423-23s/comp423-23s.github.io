@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/static/styles.css?v=1677530785.4818168">
+  <link rel="stylesheet" href="/static/styles.css?v=1677623277.5164053">
 </head>
 
 <body>
@@ -243,7 +243,7 @@ EXPOSE 8080</code></pre>
 <p>Go ahead and make a commit with this change to <code>.gitignore</code> included in the commit.</p>
 <p><strong>DEVCONTAINER:</strong> Back in your DevContainer’s terminal, not your host’s, generate an SSH key:</p>
 <pre><code>ssh-keygen -t ed25519 -C &quot;GitHub Deploy Key for EX03&quot; -f ./deploy_key</code></pre>
-<p>You should now see the files <code>deploy_key</code>, which is the private/secret key, and <code>deploy_key.pub</code> which is the public key.</p>
+<p>Note: Do NOT set a passphrase for the ssh key, just press enter at the prompt. You should now see the files <code>deploy_key</code>, which is the private/secret key, and <code>deploy_key.pub</code> which is the public key.</p>
 <p><strong>HOST:</strong> Back out in your host machine’s terminal, <code>cd</code> into your EX03 project on your host machine and run the following command to add the private key as a secret to your Cloud Apps account:</p>
 <pre><code>$ oc create secret generic comp423-ex03-deploykey \
     --from-file=ssh-privatekey=./deploy_key \
