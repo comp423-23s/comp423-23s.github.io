@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/static/styles.css?v=1678052901.28079">
+  <link rel="stylesheet" href="/static/styles.css?v=1678056373.264203">
 </head>
 
 <body>
@@ -127,13 +127,12 @@ POSTGRES_DATABASE=comp423</code></pre>
 <p>Now go to the Volumes tab of the dashboard and notice the storage volume that was created for your database data to be persistent.</p>
 <h3 id="create-database-in-postgresql">Create Database in PostgreSQL</h3>
 <p>Now we need to create a Database for our app. The PostgreSQL server is capable of hosting many databases, each with their own tables and other resources, independent of one another.</p>
-<p>Back in your VS Code Dev Container, open up a terminal and run the following commands:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>$ <span class="ex">psql</span> --host=db --user=postgres --password=postgres</span>
+<p>Back in your VS Code Dev Container, open up a terminal and run the following commands. After the first command, type in <code>postgres</code> at the password prompt.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>$ <span class="ex">psql</span> --host=db --user=postgres</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="va">postgres=</span># <span class="ex">CREATE</span> DATABASE comp423<span class="kw">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="ex">CREATE</span> DATABASE</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="ex">postgres-</span># \q  </span></code></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="ex">postgres-</span># \q  </span></code></pre></div>
 <p>Here we’re using the de facto command-line client for connecting to a PostgreSQL server: <code>psql</code>. Notice the <code>db</code> name of the host corresponds to what we named this service in the docker-compose file. Technically, this is a DNS <em>host</em>, just like <code>www.unc.edu</code>. One of the features of <code>docker-compose</code> is that it has a system for resolving these hostnames to the correct containers once they are started. Also notice the <code>user</code> and <code>password</code> are what you specified as environment variables in your <code>.env</code> file. When the PostgreSQL service began for the first time, it used the environment variables to assign the username/password for the system by convention.</p>
 <p>The second line is a SQL statement to create a database named <code>comp423</code> within your <code>db</code> container’s PostgreSQL server. The third line <code>\q</code> exits the <code>psql</code> client REPL.</p>
 <h3 id="database-code-review">Database Code Review</h3>
