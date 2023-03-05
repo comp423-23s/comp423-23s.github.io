@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> EX04 - Data Layer - COMP423 - 23S</title>
+  <link rel="icon" type="image/png" href="/static/tabbrand.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/static/styles.css?v=1678052471.190064">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+    <div class="container">
+      <a href="/" class="navbar-brand">COMP423</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="/">agenda</a>
+          </li>
+          <li class="nav-item">
+            <a href="/support" class="nav-link">support</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="exercises-page" class="container">
+    <div class="row pt-4">
+      <div class="col-12">
+        <h2>EX04 - Data Layer</h2>
+        <hr class="title" />
+      </div>
+    </div>
+
+    <script src="/static/scripts/toggle-handler.js"></script>
+    
+    <div class="row px-4">
+        <div id="box" class="toc col-xl-3 col-lg-3 order-1 order-lg-2" role="doc-toc">
+            <div id="menu-overview" class="link-page box">
+                <button id="overview-button" class="btn btn-ov" onclick="hideshow()">Overview  <img id="button-img" class="filter-icon" src="/static/components/Itinerary/arrow-up.svg" style="height:15px; padding-left: 4px;"></button>
+                <div id="overview-links">
+                    <div id="TOC" role="doc-toc">
+                        <ul class="overview-item"><ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#getting-started">Getting Started</a>
+<ul>
+<li><a href="#establishing-environment-variables">Establishing Environment Variables</a></li>
+</ul></li>
+<li><a href="#adding-the-postgres-database-service-to-docker-compose">Adding the Postgres Database Service to Docker Compose</a>
+<ul>
+<li><a href="#define-the-db-service">Define the <code>db</code> Service</a></li>
+<li><a href="#define-the-db-data-storage-volume">Define the <code>db-data</code> Storage Volume</a></li>
+<li><a href="#rebuild-container">Rebuild Container</a></li>
+<li><a href="#create-database-in-postgresql">Create Database in PostgreSQL</a></li>
+<li><a href="#database-code-review">Database Code Review</a></li>
+<li><a href="#scripting-developer-database-schema-reset-and-sample-data">Scripting Developer Database Schema Reset and Sample Data</a></li>
+</ul></li>
+<li><a href="#run-the-backend-fastapi-server-and-open-docs">Run the Backend FastAPI Server and open <code>/docs</code></a></li>
+<li><a href="#your-task">Your Task</a>
+<ul>
+<li><a href="#code-read-dependency-injection">Code Read: Dependency Injection</a></li>
+<li><a href="#technical-requirements">Technical Requirements</a></li>
+</ul></li>
+<li><a href="#hand-in">Hand-in</a></li>
+</ul>
+</</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="content col-xl-9 col-lg-9 order-2 order-lg-1 pt-3"><h2 id="overview">Overview</h2>
+<p>In this abbreviated exercise, you will be focused on connecting a subset of our checkin project’s REST API to a true database-backed data layer. We will maintain a strong separation of concerns between the FastAPI HTTP routing, request, and response handling and the SQLAlchemy’s data persistence concerns. The shared vocabulary of “data transfer objects” enabling these layers to engage with one another will be models defined in Pydantic. These architectural decisions were discussed in <a href="https://youtube.com/live/8JXxhilkJW8">Class 21 on Backend Layers</a>.</p>
+<p>Unlike the SQLAlchemy tutorial, in this exercise you will run a full <a href="https://www.postgresql.org/">PostgreSQL</a> database with long-lived persistence. We will set this database up together as part of the exercise. The database will run as a separate Docker container from your service, just as it would in production, but it will all be managed by the DevContainer setup we establish.</p>
+<p>This exercise is designed to be a solo exercise and everyone needs to create their own repository and submission. However, you are welcomed to collaborate with your final project teammates and work together through each of these steps as long as everyone is completing the work on their own machines.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>To begin, accept the following project on GitHub Classroom: <a href="https://classroom.github.com/a/tVXzSuOh" class="uri">https://classroom.github.com/a/tVXzSuOh</a></p>
+<p>Next, from outside of VSCode on your host machine, in a terminal, clone your project. We have seen issues with students attempting to clone DevContainer projects from within VSCode. These problems can be avoided if you begin by cloning your repository on your host machine and then open this folder in VSCode. It will subsequently ask you if you want to open in a DevContainer. You can go ahead and do so to build the container image.</p>
+<h3 id="establishing-environment-variables">Establishing Environment Variables</h3>
+<p>In order to establish our database, we need to provide some configuration settings. It is considered common and best practice to pass configuration settings to our servers via environment variables. Environment variables are passed into processes from their “environment”; typically the shell, but we will see another handy way in <code>.env</code> files. You have encountered environment variables in your shell already: <code>PATH</code> is one such. We will learn more about environment variables and why they are important in cloud-deployed <a href="https://12factor.net/">12-factor applications</a> soon.</p>
+<h4 id="adding-a-.env-file-to-backend">Adding a <code>.env</code> file to <code>backend</code></h4>
+<p>Environment variables can be clunky to manage and share via the terminal alone. Often you would like environment variables to be scoped to the projects you are working on rather than global to your user account or system. A common modern convention is defining environment variables in a dotfile named <code>.env</code>.</p>
+<p>The <code>.env</code> file is a common place where <em>secrets</em> and <em>system-specific</em> configuration values are stored. Thus, it is important to be sure <code>.env</code> is already listed as an entry in your project’s <code>.gitignore</code> file. You do not want to commit <code>.env</code> files to the history of your repository.</p>
+<p>Now that you have confirmed the <code>.gitignore</code> entry, from within your <code>backend</code> directory, create a file named <code>.env</code>. This is where we’ll establish some important environment variables for the backend database configuration. Copy paste the following contents:</p>
+<pre><code>MODE=development
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+POSTGRES_DATABASE=comp423</code></pre>
+<p>It is worth noting your shell program does not inherently pay attention or read <code>.env</code> files, but soon we will see how Docker and our application can make use of them.</p>
+<p>Save your <code>.env</code> file and continue on.</p>
+<h2 id="adding-the-postgres-database-service-to-docker-compose">Adding the Postgres Database Service to Docker Compose</h2>
+<p>Your DevContainer’s <code>.devcontainer/docker-compose.yml</code> file specifies only a single container in your project: your development container for backend work. Let’s add an additional container to our project to run Postgres.</p>
+<p>In doing so, we’ll be introducing a Docker Compose “service”. This is the <em>yet another</em> overloaded usage of the term <code>service</code> you have seen in the course. In this context, a Docker “Service” in a single compose project refers to a container we can access by its name from other containers in the project.</p>
+<p>The service container you’re about to setup will be named <code>db</code>. Its image will be based on a modern release of PostgreSQL. It will be given environment variables via the <code>.env</code> file you just established. These environment variables will specify the default username and password to access the database. These are kept simple (postgres/postgres) because we are working in a development environment on your machine only. In production, which we are not concerned with in this exercise, you’ll choose a randomized password.</p>
+<p>Finally, this service needs to be backed by a persistent file system such that when you restart your project all of the data remains saved to disk. We will use a feature of Docker called a “Storage Volume” and attach storage to the container at the directory PostgreSQL expects to save its data.</p>
+<h3 id="define-the-db-service">Define the <code>db</code> Service</h3>
+<p>Open <code>.devcontainer/docker-compose.yml</code>. Under services, you will see the <code>httpd</code> entry that defines our developer server container. Next, you’ll add a sibling to this service named <code>db</code>. Add the following entry:</p>
+<pre><code>    db:
+        image: postgres:15.2
+        restart: unless-stopped
+        env_file:
+            - ../backend/.env
+        ports:
+            - &#39;5432:5432&#39;
+        volumes:
+            - db-data:/var/lib/postgresql/data</code></pre>
+<p>In terms of indentation levels, <code>db</code> should be at the same as <code>httpd</code>, and <code>image</code> should be at the same level as <code>build</code> above in <code>httpd</code>. Indentation is important in YAML files, so be careful yours is correct here to avoid problems later.</p>
+<p>Notice under <code>volumes</code> we’re listing a volume named <code>db-data</code> that will be mounted into our <code>db</code> container’s <code>/var/lib/postgresql/data</code> directory; the place where PostgreSQL saves its data. Next, you’ll establish this volume:</p>
+<h3 id="define-the-db-data-storage-volume">Define the <code>db-data</code> Storage Volume</h3>
+<p>Add the following to your <code>.devcontainer/docker-compose.yml</code> file at the top-level of indentation; <code>volumes</code> should be at the same level as <code>services</code>.</p>
+<pre><code>volumes:
+    db-data:</code></pre>
+<p>We are not overriding any of the default storage volume settings for <code>db-data</code>, so this looks a bit silly, but do notice we are explicitly declaring <code>db-data</code> to be the name of a volume in our project. The <code>db</code> service defined above’s reference of <code>db-data</code> is what connects it to this entry. Once we rebuild and restart the devcontainer, you’ll be able to see this volume from within the Docker dashboard.</p>
+<h3 id="rebuild-container">Rebuild Container</h3>
+<p>After reconfiguring our <code>docker-compose.yml</code> file (or <code>Dockerfile</code>, though no changes should be necessary in it), you will need to rebuild your container for the updates to land in your DevContainer. Open the Command Palette and run “Dev Containers: Rebuild Container”. Your project should reopen without issue, but if you have problems select reopen on host machine and return to the steps above. You may also scan the error output to see if you can find the error that led to the restart not working. The three places it could be would be the <code>.env</code> file or the other steps above.</p>
+<p>Open your Docker Dashboard and view your Containers tab. You should see the <code>ex04</code> stack and if you expand it you’ll see <code>db</code> and <code>httpd</code>. Both should be running.</p>
+<p>Now go to the Volumes tab of the dashboard and notice the storage volume that was created for your database data to be persistent.</p>
+<h3 id="create-database-in-postgresql">Create Database in PostgreSQL</h3>
+<p>Now we need to create a Database for our app. The PostgreSQL server is capable of hosting many databases, each with their own tables and other resources, independent of one another.</p>
+<p>Back in your VS Code Dev Container, open up a terminal and run the following commands:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>$ <span class="ex">psql</span> --host=db --user=postgres --password=postgres</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="va">postgres=</span># <span class="ex">CREATE</span> DATABASE comp423<span class="kw">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="ex">CREATE</span> DATABASE</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="ex">postgres-</span># \q  </span></code></pre></div>
+<p>Here we’re using the de facto command-line client for connecting to a PostgreSQL server: <code>psql</code>. Notice the <code>db</code> name of the host corresponds to what we named this service in the docker-compose file. Technically, this is a DNS <em>host</em>, just like <code>www.unc.edu</code>. One of the features of <code>docker-compose</code> is that it has a system for resolving these hostnames to the correct containers once they are started. Also notice the <code>user</code> and <code>password</code> are what you specified as environment variables in your <code>.env</code> file. When the PostgreSQL service began for the first time, it used the environment variables to assign the username/password for the system by convention.</p>
+<p>The second line is a SQL statement to create a database named <code>comp423</code> within your <code>db</code> container’s PostgreSQL server. The third line <code>\q</code> exits the <code>psql</code> client REPL.</p>
+<h3 id="database-code-review">Database Code Review</h3>
+<p>There are two source code files to review ahead of the next step:</p>
+<ol type="1">
+<li><code>backend/database.py</code></li>
+<li><code>backend/env.py</code></li>
+<li><code>backend/entities.py</code></li>
+</ol>
+<p>Notice in <code>database.py</code>, we are reading the environment variables you established in <code>.env</code> in order to load the configuration necessary to create a connection string for SQLAlchemy. You’ll additionally notice the function <code>getenv</code> is being imported from <code>backend/env.py</code>. Take a quick gander at this file. You will see the <code>getenv</code> function is merely passed through from the standar library’s <code>os</code> (operating system) package. However, you will also notice this module imports and calls a function named <code>load_dotenv</code> from the <code>dotenv</code> third party library (installed from <code>requirements.txt</code>). This 3rd party library is what is responsible for our <code>.env</code> file’s contents to be loaded as environment variables. Without doing this, the contents of <code>.env</code> would other wise be ignored. Back in <code>database.py</code>, you’ll see the <code>engine</code> being established with SQL echo’ing turned on, and a function definition named <code>db_session</code>. The <code>db_session</code> function is peculiar in its usage of <code>yield</code>, making it a generator function. We will not go into depth on this detail, but if you would like to learn more please read about <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/">dependencies with yield</a>. This function will produce <code>Session</code> objects for our backend services layer to depend upon.</p>
+<p>Next open <code>entities.py</code> and notice this is the same simple <code>UserEntity</code> discussed in class. It has some helper methods defined for going back and forth between <code>pydantic</code> models (found in <code>models.py</code>).</p>
+<h3 id="scripting-developer-database-schema-reset-and-sample-data">Scripting Developer Database Schema Reset and Sample Data</h3>
+<p>As a quick recap, you now have a running PostgreSQL container and a database named <code>comp423</code> in it. However, you do not yet have a <code>users</code> table within this database, nor any data in the table. Let’s write a quick script that will be easy to run to reset our developer database tables.</p>
+<p>Create a directory named <code>script</code> and add a file to it named <code>reset_db.py</code>. Go ahead and add the contents below and complete the TODO. For the mock <code>UserEntity</code> object you are constructing and adding to the database, perhaps choose your own <code>pid</code>, <code>first_name</code>, and <code>last_name</code> to initialize the object with.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="im">import</span> database</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="im">from</span> entities <span class="im">import</span> Base, UserEntity</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co"># Reset Tables</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>Base.metadata.drop_all(database.engine)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>Base.metadata.create_all(database.engine)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co"># Enter Mock Data</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="im">from</span> sqlalchemy.orm <span class="im">import</span> Session</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>session <span class="op">=</span> Session(database.engine)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add a UserEntity to the database session and commit it.</span></span></code></pre></div>
+<p>After you have completed the <code>TODO</code>, which you can refer to your notes on SQLAlchemy for the steps involved, save your file and try running the following command to run your script.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>$ <span class="bu">cd</span> backend</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>$ <span class="ex">python3</span> -m script.reset_db</span></code></pre></div>
+<p>You should be able to wade through the SQL echoed out by SQLAlchemy and see the drop table, create table, and insert statements being issued. This script can be re-run, since it attempts to whipe the database clean (drop all) before building it back up. However, do note that these kinds of actions truly do whipe your database’s data. This is not an issue for this exercise, but in future scenarios or production management, you want to be very careful with commands and scripts like this!</p>
+<h2 id="run-the-backend-fastapi-server-and-open-docs">Run the Backend FastAPI Server and open <code>/docs</code></h2>
+<p>We will not have a front-end in this exercise as the focus is connecting the HTTP layer with the business logic / database layer. We will only have the OpenAPI <code>/docs</code> facilities provided by FastAPI.</p>
+<p>Go ahead and start your development server. From within a <code>pwd</code> of <code>backend</code>, you can start the <code>uvicorn</code> server as usual: <code>uvicorn main:app --reload</code>. Then navigate your browser to <code>localhost:8000/docs</code>. You should see the four routes defined in <code>main.py</code>. Only one of them will actually work: <code>/api/users</code>.</p>
+<p>If you are not seeing the correct backend, go back to VSCode and check the “PORTS” tab in the same pane as your terminal. You should a green dot next to port <code>8000</code> on your container and may see that your Local Address was mapped to a different port, in which case, you should navigate to that address with <code>/docs</code> appended.</p>
+<p>Try executing the route <code>/api/users</code>. If all is well up to this point in the exercise, you should see the response include the mock data you established in <code>reset_db.py</code>. If you do not, then you should not proceed any further as some step above failed. If you are seeing an error, it likely has to do with database creation or table creation. If you are seeing no error but an empty array response body, then your <code>UserEntity</code> in <code>reset_db.py</code> was not successfully inserted and committed to the database. Resolve these issues first.</p>
+<h2 id="your-task">Your Task</h2>
+<p>Your task in this exercise is to complete the three remaining route implementations in <code>main.py</code>, for routes <code>new_user</code>, <code>get_user</code>, and <code>delete_user</code>. These routes should persist and retrieve their data from the PostgreSQL database. The concerns of database interactions should be defined in <code>user_service.py</code>. Here, between the two files, you will see a complete end-to-end implementation for the route you just tested: <code>get_users</code> depends on <code>UserService#all</code>.</p>
+<p>As discussed in class, the parameter and return types of your service should be <code>User</code> models. All database concerns, and <code>UserEntity</code> usage, should be encapsulated in your <code>UserService</code> class. One simple rule of thumb for this is looking at the imports of <code>main.py</code> versus <code>user_service.py</code>. Notice <code>main.py</code> does not import any functionality from <code>sqlalchemy</code>– it is implemented in terms of <code>user_service</code>.</p>
+<h3 id="code-read-dependency-injection">Code Read: Dependency Injection</h3>
+<p>Notice a new pattern in the parameters of the routes, which you have seen use FastAPI’s conventional dependency injection features. A new feature, which is demonstrated in each of the four route functions, is the ability to provide custom dependency injectors. Each of the functions has a parameter of <code>user_service: UserService = Depends()</code>. The <code>Depends</code> default is <a href="https://fastapi.tiangolo.com/tutorial/dependencies/">FastAPI’s convention and system</a> for specifying custom dependencies. This particular dependency is indicating FastAPI needs to construct a new instance of <code>UserService</code> before each route evaluation (which happens per each request from a web client).</p>
+<p>Next, open <code>user_service.py</code> and notice the definition of <code>UserService#__init__</code>. Specifically, notice that it has a parameter with signature <code>session: Session = Depends(db_session)</code>. Recall, <code>db_session</code> is a special function defined in <code>database.py</code>. In essence, this dependency is telling FastAPI that when it injects a <code>UserService</code> it needs to first call <code>db_session</code> to grab a fresh <code>Session</code> and pass it in as an argument to the constructor of <code>UserService</code>.</p>
+<p>Thus, thanks to the FastAPI framework, when you request any of these API end-points, FastAPI is constructing this object graph and passing it into the function being routed to as a parameter. This has three distinct benefits. First, it alleviates you from needing to construct these objects manually in code for each route. Second, when it comes time to write tests, we will have a simple way of passing in our own arguments with test stubs and mocks rather than rely on dependency injection. Third, <a href="https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/">thanks to FastAPI’s conventions</a>, we can define our dependencies to automatically clean up for themselves once the route has responded to the client. In our example, the session with the database is closed automatically in the <code>database.py/db_session</code> function. Dependency injection is a common, modern pattern seen widely throughout many frameworks (you saw this in Angular, too!)</p>
+<h3 id="technical-requirements">Technical Requirements</h3>
+<p>There are a few technical requirements for the routes you implement and the backing service layer:</p>
+<ol type="1">
+<li>All <code>UserService</code> methods should retain and adhere to their method signatures’ parameter and return types.</li>
+<li><code>new_user</code> route should result in a 422 response if there is an error experienced in the creation of the user (such as attempting to register a duplicate PID, which the database will refuse and raise an error for you to handle in <code>main.py</code>).</li>
+<li><code>get_user</code> should result in a 404 response if the user cannot be found in the database.</li>
+<li><code>delete_user</code> should result in a 404 response if there is an issue deleting a user by their PID.</li>
+</ol>
+<p>As you complete each route and its backing service method, you should be able to interactively test persistence in your database via the OpenAPI docs interface. Further, you can fully close your <code>uvicorn</code> server, start it back up, and restart your Dev Container and host machine, and your data from earlier sessions will be retained thanks to <em>finally</em> having a truly persistent layer in the PostgreSQL database.</p>
+<h2 id="hand-in">Hand-in</h2>
+<p>Hand-in instructions to follow soon.</p>
+</div>
+
+       
+
+    </div> 
+
+    <div class="authors-box bg-light mt-4 py-3 ps-4">
+      <span> Contributor(s): Kris Jordan</span>
+    </div>
+  </div>
+  <div class='link-page mt-3 container'>
+    <footer>
+      <h6 class="text-center align-middle footer-text">&copy; 2023 <a href="https://krisjordan.com">Kris Jordan</a>
+        - <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform?usp=sf_link">Feedback
+          Form</a>
+        - Made with 💛 in <a href="https://cs.unc.edu/">Chapel Hill</a></h6>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</body>
+
+</html>
