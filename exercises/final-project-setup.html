@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> FN00 - Final Project Setup - COMP423 - 23S</title>
+  <link rel="icon" type="image/png" href="/static/tabbrand.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/static/styles.css?v=1679324929.234574">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+    <div class="container">
+      <a href="/" class="navbar-brand">COMP423</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="/">agenda</a>
+          </li>
+          <li class="nav-item">
+            <a href="/support" class="nav-link">support</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="exercises-page" class="container">
+    <div class="row pt-4">
+      <div class="col-12">
+        <h2>FN00 - Final Project Setup</h2>
+        <hr class="title" />
+      </div>
+    </div>
+
+    <script src="/static/scripts/toggle-handler.js"></script>
+    
+    <div class="row px-4">
+        <div id="box" class="toc col-xl-3 col-lg-3 order-1 order-lg-2" role="doc-toc">
+            <div id="menu-overview" class="link-page box">
+                <button id="overview-button" class="btn btn-ov" onclick="hideshow()">Overview  <img id="button-img" class="filter-icon" src="/static/components/Itinerary/arrow-up.svg" style="height:15px; padding-left: 4px;"></button>
+                <div id="overview-links">
+                    <div id="TOC" role="doc-toc">
+                        <ul class="overview-item"><ul>
+<li><a href="#development-environment">Development Environment</a>
+<ul>
+<li><a href="#initial-development-environment">Initial Development Environment</a></li>
+<li><a href="#github-repository-configuration">GitHub Repository Configuration</a></li>
+<li><a href="#setting-up-your-development-environment">Setting up your Development Environment</a></li>
+</ul></li>
+</ul>
+</</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="content col-xl-9 col-lg-9 order-2 order-lg-1 pt-3"><h1 id="development-environment">Development Environment</h1>
+<h2 id="initial-development-environment">Initial Development Environment</h2>
+<ol type="1">
+<li>In a terminal on your host system, not within VSCode, create a new directory with the name of your team’s final project repository:
+<ul>
+<li><code>mkdir comp423-final-project</code></li>
+</ul></li>
+<li>Initialize the new empty directory as a <code>git</code> repository:
+<ul>
+<li><code>git init</code></li>
+</ul></li>
+<li>Add a git remote repository named <code>upstream</code> bound to the public, open source CSXL web app repository:
+<ul>
+<li><code>git remote add upstream https://github.com/unc-csxl/csxl.unc.edu.git</code></li>
+</ul></li>
+<li>Pull the <code>main</code> branch from <code>upstream</code>:
+<ul>
+<li><code>git pull upstream main</code></li>
+</ul></li>
+<li>Add a git remote repository named <code>origin</code> bound to your team’s private final project repository. You will need to find the correct repository URL. Open your team’s final project repository on GitHub in a web browser, click the down triangle on the green Code button, and copy the Clone URL. Use this URL in the placeholder below:
+<ul>
+<li><code>git remote add origin TEAM_REPO_URL_PLACEHOLDER</code></li>
+</ul></li>
+<li>Push <code>main</code> to <code>origin</code>. If you are the first member on the team to do this, you will see the repository’s history being pushed up to GitHub. If you are not the first member on the team to do this, you should see “Everything up to date”:
+<ul>
+<li><code>git push origin main</code></li>
+</ul></li>
+<li>Your team will work off of a staging branch named <code>stage</code>, rather than the <code>main</code> branch. Go ahead and establish a <code>stage</code> branch locally and push it:
+<ul>
+<li><code>git branch stage</code></li>
+<li><code>git switch stage</code></li>
+<li><code>git push origin stage</code></li>
+</ul></li>
+</ol>
+<h2 id="github-repository-configuration">GitHub Repository Configuration</h2>
+<p>Only one member of your team needs to setup the following repository branch settings:</p>
+<ol type="1">
+<li>Settings &gt; Branches</li>
+<li>Change Default Branch to <code>stage</code>
+<ul>
+<li>Press the swap/switch button (not the pencil!) and select <code>stage</code></li>
+<li>If you do not see <code>stage</code>, be sure you completed all the steps above</li>
+</ul></li>
+<li>Add Branch Protection Rule to prevent any pushing to <code>main</code>
+<ol type="1">
+<li>Branch name pattern: <code>main</code></li>
+<li>(Check) Lock branch</li>
+<li>(Check) Do not allow bypassing the above settings</li>
+<li>Save Changes</li>
+</ol></li>
+<li>Add Branch Protection Rule to enforce a professional team workflow on <code>stage</code>
+<ol type="1">
+<li>Branch name pattern: <code>stage</code></li>
+<li>(Check) Require a pull request before merging
+<ol type="1">
+<li>(Check) Require approvals: 1 required</li>
+<li>(Check) Dismiss stale pull request approvals when new commits are pushed</li>
+<li>(Check) Require approval of the most recent reviewable push</li>
+</ol></li>
+<li>(Check) Require conversation resolution before merging</li>
+<li>(Check) Require linear history</li>
+<li>(Check) Lock branch</li>
+<li>(Check) Do not allow bypassing the above settings</li>
+<li>Save Changes</li>
+</ol></li>
+</ol>
+<h2 id="setting-up-your-development-environment">Setting up your Development Environment</h2>
+<p>Open your project locally, without opening it in a Dev Container at first, and follow the instructions to get started found in the project’s <code>docs</code> directory: <code>docs/get_started.md</code></p>
+</div>
+
+       
+
+    </div> 
+
+    <div class="authors-box bg-light mt-4 py-3 ps-4">
+      <span> Contributor(s): Kris Jordan</span>
+    </div>
+  </div>
+  <div class='link-page mt-3 container'>
+    <footer>
+      <h6 class="text-center align-middle footer-text">&copy; 2023 <a href="https://krisjordan.com">Kris Jordan</a>
+        - <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform?usp=sf_link">Feedback
+          Form</a>
+        - Made with 💛 in <a href="https://cs.unc.edu/">Chapel Hill</a></h6>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</body>
+
+</html>
