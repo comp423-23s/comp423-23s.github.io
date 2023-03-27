@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/static/styles.css?v=1679677732.5328338">
+  <link rel="stylesheet" href="/static/styles.css?v=1679934428.053755">
 </head>
 
 <body>
@@ -262,7 +262,7 @@ EXPOSE 8080</code></pre>
 <p>Back in your host terminal, it’s time to create the app on OpenShift! Be sure to substitute <code>&lt;your-ex03-repository-name&gt;</code> with your actual repository’s name/URL on GitHub:</p>
 <pre><code>$ oc new-app python:3.11~git@github.com:comp423-23s/&lt;your-ex03-repository-name&gt;.git \
     --source-secret=comp423-ex03-deploykey \
-    --name comp423-ex03 \
+    --name=comp423-ex03 \
     --strategy=docker</code></pre>
 <p>In the above command, the <code>python:3.11</code> preceding the tilde is specifying the base image of this project to be <code>python:3.11</code>, corresponding with the final stage of the <code>Dockerfile</code> build script you added to your project above. This is followed by the repo URL on GitHub, a reference to the secret key you just established, a name for the application, and finally the build strategy being Dockerfile-based as described previously.</p>
 <p>To “follow” the first build, run the next command. You will see some “errors” in pulling images and whatnot along the way, ignore these for as long as it’s making progress.</p>
