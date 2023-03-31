@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/static/styles.css?v=1680136785.8258111">
+  <link rel="stylesheet" href="/static/styles.css?v=1680281577.525172">
 </head>
 
 <body>
@@ -279,7 +279,7 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="ex">oc</span> expose deployment final-project <span class="kw">\</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>  <span class="ex">--port</span>=80 <span class="kw">\</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>  <span class="ex">--target-port</span>=8080</span></code></pre></div>
-<p>Next, we can create a route to the service with a specifically chosen hostname. Please replace <code>k9</code> with your team’s zone (lowercase) and table number:</p>
+<p>Next, we can create a route to the service with a specifically chosen hostname. <strong>Please replace <code>k9</code> with your team’s zone (lowercase) and table number</strong>:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="ex">oc</span> create route edge <span class="kw">\</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>  <span class="ex">--service</span>=final-project <span class="kw">\</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>  <span class="ex">--hostname</span>=team-k9-comp423-23s.apps.cloudapps.unc.edu</span></code></pre></div>
