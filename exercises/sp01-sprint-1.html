@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> SP01 - Sprint 1 - Final Project - COMP423 - 23S</title>
+  <link rel="icon" type="image/png" href="/static/tabbrand.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/static/styles.css?v=1681143125.0111623">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+    <div class="container">
+      <a href="/" class="navbar-brand">COMP423</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="/">agenda</a>
+          </li>
+          <li class="nav-item">
+            <a href="/support" class="nav-link">support</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="exercises-page" class="container">
+    <div class="row pt-4">
+      <div class="col-12">
+        <h2>SP01 - Sprint 1 - Final Project</h2>
+        <hr class="title" />
+      </div>
+    </div>
+
+    <script src="/static/scripts/toggle-handler.js"></script>
+    
+    <div class="row px-4">
+        <div id="box" class="toc col-xl-3 col-lg-3 order-1 order-lg-2" role="doc-toc">
+            <div id="menu-overview" class="link-page box">
+                <button id="overview-button" class="btn btn-ov" onclick="hideshow()">Overview  <img id="button-img" class="filter-icon" src="/static/components/Itinerary/arrow-up.svg" style="height:15px; padding-left: 4px;"></button>
+                <div id="overview-links">
+                    <div id="TOC" role="doc-toc">
+                        <ul class="overview-item"><ul>
+<li><a href="#sprint-1-expectations">Sprint 1 Expectations</a>
+<ul>
+<li><a href="#expectation-1-project-management-documentation">Expectation 1: Project Management &amp; Documentation</a></li>
+<li><a href="#expectation-2-project-standards-maintained">Expectation 2: Project Standards Maintained</a></li>
+<li><a href="#expectation-3-mutation-story">Expectation 3: Mutation Story</a></li>
+<li><a href="#expectation-4-admin-only-story">Expectation 4: Admin-only Story</a></li>
+<li><a href="#expectation-5-third-story">Expectation 5: Third Story</a></li>
+<li><a href="#looking-ahead">Looking Ahead</a></li>
+</ul></li>
+</ul>
+</</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="content col-xl-9 col-lg-9 order-2 order-lg-1 pt-3"><h2 id="sprint-1-expectations">Sprint 1 Expectations</h2>
+<p>This sprint is about building out additional, high-value functionalities of your feature which involve writing to the database and serving another persona. Throughout this sprint, you should be following best practices on project management and documentation.</p>
+<h3 id="expectation-1-project-management-documentation">Expectation 1: Project Management &amp; Documentation</h3>
+<p>Issues are kept up-to-date on project boards and closed out when completed. Changes are merged into stage exclusively via pull requests with meaningful code reviews. Commits merged into stage are descriptive following best practices of commit messages.</p>
+<p>In addition to standard code documenting expectations (doc strings, etc.), in this sprint your team will need to make progress on documenting your feature.</p>
+<p>In <code>docs</code>, your team will add a markdown file with your feature’s name, (e.g. <code>student-organizations.md</code>)</p>
+<p>The doc should contain a well written:</p>
+<h4 id="overview">Overview</h4>
+<ul>
+<li>Short description of your feature, who it primarily serves, the value it provides to the community</li>
+<li>Description of its high-level functions.</li>
+</ul>
+<h4 id="implementation-notes">Implementation Notes</h4>
+<ul>
+<li>Description of database/entity-level representation of your feature</li>
+<li>Interesting design choices your team made (we choose to do X over Y, because…)</li>
+</ul>
+<h4 id="development-concerns">Development Concerns</h4>
+<ul>
+<li>If a new developer wanted to start working on your feature, what kind of guidance or overview would you give them to get them started?</li>
+<li>What files would you point them at?</li>
+<li>Is there anything special they would need to do to get started?</li>
+</ul>
+<h4 id="future-work">Future Work</h4>
+<ul>
+<li>What directions could this feature be taken in? Given more time, what would you hope was added or improved next?</li>
+</ul>
+<h3 id="expectation-2-project-standards-maintained">Expectation 2: Project Standards Maintained</h3>
+<p>As discussed in <a href="https://docs.google.com/presentation/d/1nqgqoO8CvQL7VxNuWMmf-NzXkLuaQCIQHCIHOGOSNvE/edit#slide=id.g1f9a705d451_0_68">Class 26 on March 22nd</a>, Angular Material components are used anywhere there are inputs, tables, tabs, etc. If there is an Angular Material component that achieves what your user interfaces need, you should use it in the frontend rather than standard, or bespoke, native HTML controls.</p>
+<p>Backend service classes should be tested using Pytest with mock data. Backend service classes and methods should be documented using docstrings following the <a href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google Python Style Guide</a>.</p>
+<p>Stories merged in to <code>stage</code> should be of usable, production quality.</p>
+<h3 id="expectation-3-mutation-story">Expectation 3: Mutation Story</h3>
+<p>One user story should result in a change to the database’s state that is visible to at least one other persona. This story should be achievable by an interaction from the front-end (such as clicking a button, submitting a form, etc.).</p>
+<h3 id="expectation-4-admin-only-story">Expectation 4: Admin-only Story</h3>
+<p>One user story should be possible only for a user with a specific administrative role for your feature, or root user, to perform. You are encouraged to put administrative features in the <code>Admin</code> tab visible to the <code>root</code> user and other admins, but if it makes more sense to have admin-only functionality directly within your feature itself, that is ok. This functionality should not be visible to users who do not have the correct role or permissions. You are encouraged to add a role and/or permissions to your feature to the reset data.</p>
+<p>You are encouraged to add permissions to the <em>staff</em> role for your feature’s management in the <a href="https://github.com/unc-csxl/csxl.unc.edu/blob/main/backend/script/dev_data/permissions.py">dev_data script’s <code>permissions.py</code></a>.</p>
+<p>For examples on how to check permissions in the backend, see examples such as the following two:</p>
+<ol type="1">
+<li><a href="https://github.com/unc-csxl/csxl.unc.edu/blob/8fc4a8951878b902203961c9ec4bcb86addad877/backend/services/user.py#L68-L83">Listing users (in a paginated format) from the backend admin API</a>. Notice the line where permission action of <code>user.list</code> on the resource of <code>user/</code> is <a href="https://github.com/unc-csxl/csxl.unc.edu/blob/8fc4a8951878b902203961c9ec4bcb86addad877/backend/services/user.py#L82">enforced</a>.</li>
+<li>Updating a user’s profile is a service method that has feature specific logic. A user is able to update their own profile. An admin with permission to update the user’s resource is also able to. Form a service method’s perspective, you can see how this style of access control logic is <a href="https://github.com/unc-csxl/csxl.unc.edu/blob/8fc4a8951878b902203961c9ec4bcb86addad877/backend/services/user.py#L145-L146">idiomatically implemented in the source</a>.</li>
+</ol>
+<p>From the frontend, you will find administrative concerns in the <a href="https://github.com/unc-csxl/csxl.unc.edu/tree/main/frontend/src/app/admin"><code>app/admin</code> directory</a>. Additionally, you can see how to check admin permissions using the permission service <a href="https://github.com/unc-csxl/csxl.unc.edu/blob/main/frontend/src/app/navigation/navigation.component.ts#L27-L41">as shown in the <code>NavigationComponent</code></a>. These permissions can be <a href="https://github.com/unc-csxl/csxl.unc.edu/blob/main/frontend/src/app/navigation/navigation.component.html#L13">checked from the HTML templates</a>. Feature-specific permissions, such as what someone who is registered for a workshop can do, will need to be enforced by your own feature code’s logic.</p>
+<h3 id="expectation-5-third-story">Expectation 5: Third Story</h3>
+<p>Complete one additional user story, separate from expectations #3 and #4, that your team believes is most important to the success of your feature.</p>
+<h3 id="looking-ahead">Looking Ahead</h3>
+<p>Aiming above and beyond the minimum story expectations of this sprint is OK and can be used towards satisfying the requirements of the next sprint. Ultimately, your final project feature is going to need to have minimum viable functionality for basic administrative needs (listing, creating, updating, deleting, and managing entities) for your feature, as well as the stories important to students using your feature from the frontend.</p>
+</div>
+
+       
+
+    </div> 
+
+    <div class="authors-box bg-light mt-4 py-3 ps-4">
+      <span> Contributor(s): Kris Jordan</span>
+    </div>
+  </div>
+  <div class='link-page mt-3 container'>
+    <footer>
+      <h6 class="text-center align-middle footer-text">&copy; 2023 <a href="https://krisjordan.com">Kris Jordan</a>
+        - <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform?usp=sf_link">Feedback
+          Form</a>
+        - Made with 💛 in <a href="https://cs.unc.edu/">Chapel Hill</a></h6>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</body>
+
+</html>
