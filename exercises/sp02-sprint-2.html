@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> SP02 - Sprint 2 - Final Project - COMP423 - 23S</title>
+  <link rel="icon" type="image/png" href="/static/tabbrand.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/static/styles.css?v=1682091599.1695478">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+    <div class="container">
+      <a href="/" class="navbar-brand">COMP423</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="/">agenda</a>
+          </li>
+          <li class="nav-item">
+            <a href="/support" class="nav-link">support</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="exercises-page" class="container">
+    <div class="row pt-4">
+      <div class="col-12">
+        <h2>SP02 - Sprint 2 - Final Project</h2>
+        <hr class="title" />
+      </div>
+    </div>
+
+    <script src="/static/scripts/toggle-handler.js"></script>
+    
+    <div class="row px-4">
+        <div id="box" class="toc col-xl-3 col-lg-3 order-1 order-lg-2" role="doc-toc">
+            <div id="menu-overview" class="link-page box">
+                <button id="overview-button" class="btn btn-ov" onclick="hideshow()">Overview  <img id="button-img" class="filter-icon" src="/static/components/Itinerary/arrow-up.svg" style="height:15px; padding-left: 4px;"></button>
+                <div id="overview-links">
+                    <div id="TOC" role="doc-toc">
+                        <ul class="overview-item"><ul>
+<li><a href="#sprint-2-expectations">Sprint 2 Expectations</a>
+<ul>
+<li><a href="#expectation-1-project-management-standards">Expectation 1: Project Management &amp; Standards</a></li>
+<li><a href="#expectation-2-polish-for-end-user-stories">Expectation 2: Polish for End-user Stories</a></li>
+<li><a href="#expectation-3-administrator-cruds-on-primary-entity">Expectation 3: Administrator CRUDS on Primary Entity</a></li>
+<li><a href="#expectation-4-improve-the-information-design-of-your-documentation">Expectation 4: Improve the Information Design of your Documentation</a></li>
+</ul></li>
+<li><a href="#technical-lead-expectations">Technical Lead Expectations</a></li>
+<li><a href="#engineer-expectations">Engineer Expectations</a></li>
+</ul>
+</</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="content col-xl-9 col-lg-9 order-2 order-lg-1 pt-3"><h2 id="sprint-2-expectations">Sprint 2 Expectations</h2>
+<p>This sprint is about arriving at a well implemented, tested, and thoughtful production-quality feature.</p>
+<h3 id="expectation-1-project-management-standards">Expectation 1: Project Management &amp; Standards</h3>
+<p>These remain the same as in the previous sprint.</p>
+<p>Issues are kept up-to-date on project boards and closed out when completed. Changes are merged into stage exclusively via pull requests with meaningful code reviews. Commits merged into stage are descriptive following best practices of commit messages.</p>
+<p>Angular Material components are used anywhere there are inputs, tables, tabs, etc. If there is an Angular Material component that achieves what your user interfaces need, you should use it in the frontend rather than standard, or bespoke, native HTML controls.</p>
+<p>Backend service classes should be tested using Pytest with mock data. Backend service classes and methods should be documented using docstrings following the <a href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google Python Style Guide</a>.</p>
+<p>Careful attention to permissions and access control should be paid to adhere to the principle of least privilege. Users should only be able to perform the necessary actions on the permitted resources for their legitimate purpose.</p>
+<p>Stories merged in to <code>stage</code> should be of usable, production quality.</p>
+<h3 id="expectation-2-polish-for-end-user-stories">Expectation 2: Polish for End-user Stories</h3>
+<p>The interactions designed for your primary persona should be smooth and polished. This includes user-friendly interactions and form design, friendly error messages for missing fields or issues with data in a form, and thoughtful user experience considerations such as clear user instructions and being sure everything visible works. If there are features you added user interface elements for that are not yet implemented, you should remove them by the end of this sprint. Everything visible should be functional.</p>
+<p>Additionally, polish should be added to the implementation wherever possible. You are encouraged to develop a Quality Assurance standards checklist and move through each feature from end-to-end, including docs and tests, and be sure to refactor and/or improve your implementation wherever possible.</p>
+<h3 id="expectation-3-administrator-cruds-on-primary-entity">Expectation 3: Administrator CRUDS on Primary Entity</h3>
+<p>Your feature’s primary enetity should have a full set of CRUDS (Create, Read, Update, Delete, and List or Search) functionality for administrators. You are welcomed and encouraged to add a tab to the <code>Admin</code> area when logged in as an administrator. However, if your feature’s design makes more sense to have the CRUDS functionality directly within your feature itself, that is ok.</p>
+<p>Search functionality is not required, but if it makes sense in the context of your feature, go for it!</p>
+<h3 id="expectation-4-improve-the-information-design-of-your-documentation">Expectation 4: Improve the Information Design of your Documentation</h3>
+<p>Take another pass at your information design decisions for documentation in <code>docs/</code> and be sure it is written for a developer to read. You should avoid language such as, “we would direct new developers to X and give them…”. Your documentation is written directly addressing a developer, not the course staff. If it helps, imagine you are writing for a future COMP423 student working to understand and extend your feature.</p>
+<p>Choose plain language where possible.</p>
+<p>Improve the formatting of your document to be sure it is easy to read and understand. Make appropriate use of paragraph text, versus merely bulleted lists, where needed. Choose heading text that is appropriate for your feature and the audience, not merely copying text from Sprint 1 expectations. If information would better be represented with a table, use a table instead of a list. This list is not exhaustive. Use your best judgement to make your documentation a <em>great</em> artifact you can be proud of.</p>
+<p>Finally, include at least one screenshot of the feature from the end user persona’s perspective in the top level introduction to your feature. Additionally, when describing the key functionality of your feature from either the end user or the administrator’s perspective, include screenshots here, as well. To add an image to your project, place it in the <code>docs/images</code> directory.</p>
+<p>Include an authors section toward the top of the document listing the names of everyone in the group with links to their GitHub profiles.</p>
+<h2 id="technical-lead-expectations">Technical Lead Expectations</h2>
+<p>Each team with four or more members identified a technical lead this sprint. The duties and restrictions of this role are distinct from earlier sprints. Your primary challenge as a technical lead is to help your team make progress without you writing code.</p>
+<p>In this Sprint, you are chiefly responsible for:</p>
+<ol type="1">
+<li><p>Code Review - You should perform the code reviews on PRs, carefully and intentionally reviewing submissions and using the review process to improve the quality of PRs where reasonable. Throughout the code review process, you should follow best practices and aim for very quick turnaround times, with the goal of practicing kindness, patience, and care for your team’s morale. Celebrate the good work in PRs!</p></li>
+<li><p>Project Management - You can help develop a Quality Assurance checklist and perform some of the review tasks yourself. Where there are places you can identify opportunities for improvement, you should create issues that are actionable and of an appropriate scope to complete in this sprint. You can propose plans of action and make specific suggestions within an Issue, linking directly to lines of code within the repository on GitHub, but should not be writing or pushing code to the repository.</p></li>
+<li><p>Feature Documentation - You are chiefly responsible for improving the quality of the markdown file for your feature in the <code>docs/</code> and responsible for Expectation #4. Your engineers are responsible for the documentation of the code base itself this sprint, as well as the tests.</p></li>
+<li><p>Observer/Navigator Pair Programmer and Technical Support Lead - You are permitted to pair program from the observer/navigator role with team members and are encouraged to, if schedules align. You are also encouraged to serve as the technical support lead and help your team members overcome technical hurdles, debugging issues, and so on.</p></li>
+</ol>
+<p>In this Sprint, starting from 4/20, you are not permitted to:</p>
+<ol type="1">
+<li><p>Author commits with changes anywhere outside the <code>docs/</code> directory.</p></li>
+<li><p>Merging PRs after CRs are completed. Your engineers should be responsible for the merging and deploying process.</p></li>
+<li><p>Handling staging issues on CloudApps. You can help as a navigator, but at least one other person on your team should be capable of handling cloud infrastructure concerns. Ideally every member of your team is capable of deploying a merged PR.</p></li>
+</ol>
+<p>As technical lead, this is an opportunity to practice teaching, communicating, and having impact without directly carrying out the work as an individual contributor. These are incredibly valuable skills to practice.</p>
+<p>In this Sprint, your team has a reasonable expectation for you to continue to be engaged, present, and contributing to the project, albeit from a promoted role with different responsibilities. You should ask yourself, “how can I serve my team and help us close this project out without writing code?” Additionally, how can you champion their work and help them feel supported and empowered to succeed?</p>
+<h2 id="engineer-expectations">Engineer Expectations</h2>
+<p>Your expectations remain similar to previous sprints. You should be seeking stories and issues to take on, writing sound code with good documentation and testing where appropriate. You should be collaborating with your team productively and respectfully. When you are blocked, you should collaborate with your technical lead to find a way to become unblocked or something else to take on. When you are looking for ideas on how to overcome challenges, you can ask your technical lead for ideas. If schedules permit, you can pair program with your technical lead, but at this point in the semester you are expected to be able to make progress individually.</p>
+<p>In this sprint, you do not need to serve as a code reviewer and can expect timely, helpful, and kind code reviews from your technical lead. You should be able to merge and deploy your own PRs once they are approved for merging.</p>
+</div>
+
+       
+
+    </div> 
+
+    <div class="authors-box bg-light mt-4 py-3 ps-4">
+      <span> Contributor(s): Kris Jordan</span>
+    </div>
+  </div>
+  <div class='link-page mt-3 container'>
+    <footer>
+      <h6 class="text-center align-middle footer-text">&copy; 2023 <a href="https://krisjordan.com">Kris Jordan</a>
+        - <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScQMteEvnQpBfGsAYP5TpuqokQenhZUIf8CNvfAUUZEjMCWZQ/viewform?usp=sf_link">Feedback
+          Form</a>
+        - Made with 💛 in <a href="https://cs.unc.edu/">Chapel Hill</a></h6>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</body>
+
+</html>
